@@ -16,5 +16,6 @@ int subMenu();
 tuple<string, string> leerEnv();
 int verificacion(string username, string password, string frase, vector<int> vec, int num);
 int contarmenu();
+int process();
 
 #endif // FUNCTIONS_H

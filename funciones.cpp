@@ -158,6 +158,7 @@ int verificacion(string username, string password, string frase, vector <int> ve
 
 int contarmenu(){
     int opcion3;
+    bool check1 = false, check2 = false, check3 = false;
     do{
 
         pid_t pid = getpid();
@@ -181,21 +182,31 @@ int contarmenu(){
 
                 case 1: {
                     cout << "Opción 1: Extensión de archivos a procesar" << endl;
+                    check1 = true;
                     if (subMenu() == 0) return 0;
                     break;
                 }
                 case 2: {
                     cout << "Opción 2: Path de carpeta a procesar" << endl;
+                    check2 = true;
                     if (subMenu() == 0) return 0;
                     break;
                 }
                 case 3: {
                     cout << "Opción 3: Path de carpeta que contendrá la respuesta del proceso" << endl;
+                    check3 = true;
                     if (subMenu() == 0) return 0;
                     break;
                 }
                 case 4: {
                     cout << "Opción 4: Procesar" << endl;
+                    if (check1 == true && check2 == true && check3 == true){
+                        //process();
+                        cout << "Procesando..." << endl;
+                    }
+                    else{
+                        cout << "Tienes que completar las opciones 1 2 y 3." << endl;
+                    }
                     if (subMenu() == 0) return 0;
                     break;
 
