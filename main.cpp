@@ -122,7 +122,6 @@ int main (int argc, char* argv[]){
             } 
             case 7: {
                 contarmenu();
-                cout << "opcion 7" << endl;
                 break;
             }
             default:

@@ -156,14 +156,55 @@ int verificacion(string username, string password, string frase, vector <int> ve
     return 0;
 }
 
-void contarmenu(){
-    pid_t pid = getpid();
-    cout << "\nPrograma contador de palabras" << endl;
-    cout << "PID: " << pid << endl;
-    cout << "seleccione la opcion: " << endl;
-    cout << "\n\t0) Salir" << endl;
-    cout << "\t1) Extensión de archivos a procesar(ej:txt)" << endl;
-    cout << "\t2) Path de carpeta a procesar (eje: /home/usuario/in)" << endl;
-    cout << "\t3) Path de carpeta que contendrá la respuesta del proceso (eje: /home/usuario/out)" << endl;
-    cout << "\t4) Procesar" << endl;
+int contarmenu(){
+    int opcion3;
+    do{
+
+        pid_t pid = getpid();
+        cout << "\nPrograma contador de palabras" << endl;
+        cout << "PID: " << pid << endl;
+        cout << "seleccione la opcion: " << endl;
+        cout << "\n0) Salir" << endl;
+        cout << "1) Extensión de archivos a procesar(ej:txt)" << endl;
+        cout << "2) Path de carpeta a procesar(eje: /home/usuario/in)" << endl;
+        cout << "3) Path de carpeta que contendrá la respuesta del proceso(eje:/home/usuario/out)" << endl;
+        cout << "4) Procesar" << endl;
+        cout << "Escriba aquí: ";
+
+        cin >> opcion3;
+
+        switch (opcion3) {
+                case 0: {
+                    cout << "Saliendo..." << endl;
+                    break;
+                }
+
+                case 1: {
+                    cout << "Opción 1: Extensión de archivos a procesar" << endl;
+                    if (subMenu() == 0) return 0;
+                    break;
+                }
+                case 2: {
+                    cout << "Opción 2: Path de carpeta a procesar" << endl;
+                    if (subMenu() == 0) return 0;
+                    break;
+                }
+                case 3: {
+                    cout << "Opción 3: Path de carpeta que contendrá la respuesta del proceso" << endl;
+                    if (subMenu() == 0) return 0;
+                    break;
+                }
+                case 4: {
+                    cout << "Opción 4: Procesar" << endl;
+                    if (subMenu() == 0) return 0;
+                    break;
+
+                default:
+                    cout<<endl << "\033[31m" << "Opción inválida. Intente de nuevo.!!!!"<<"\033[0m" << endl;
+                
+            }
+        }
+    }
+    while(opcion3 != 0);
+    return 0;
 }

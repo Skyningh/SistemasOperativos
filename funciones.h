@@ -15,6 +15,6 @@ vector<int> procesaVector(string a);
 int subMenu();
 tuple<string, string> leerEnv();
 int verificacion(string username, string password, string frase, vector<int> vec, int num);
-void contarmenu();
+int contarmenu();
 
 #endif // FUNCTIONS_H
