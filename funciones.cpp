@@ -83,7 +83,7 @@ int subMenu() {
             cout << endl << "Error, ingrese la opción otra vez!!!!!!!!" << endl;
         }
     } while (opcion2 != 0 && opcion2 != 1);
-    if (opcion2 = 1)
+    if (opcion2 == 1)
         cout<<endl<< "Volviendo..."<<endl<<endl;
     else
         cout<<endl<< "Saliendo..."<<endl<<endl;
