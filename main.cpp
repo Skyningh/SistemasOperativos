@@ -66,17 +66,21 @@ int main (int argc, char* argv[]){
         //Interfaz, con un do while
         cout<< "----------------------"<<endl;
         cout << "Elija una de las siguientes opciones:" <<endl;
+        cout << "0. Contar palabras." << endl;
         cout << "1. Verificar si la frase es un palíndromo." << endl;
         cout << "2. Contar el número de vocales de la frase." << endl;
         cout << "3. Contar número de letras de la frase" << endl;
         cout << "4. Calcular el promedio y sumatoria del vector" << endl;
         cout << "5. Calcular la función f(x) = 5x²+1/x" << endl;
         cout << "6. Salir" << endl;
+        cout << "7. Contar Palabras" << endl;
         cout << "Escriba aquí: ";
         
         cin >> opcion;
     
         switch (opcion) {
+
+
             case 1: {
                 cout << "----------------------"<<endl<<endl;
                 cout <<"Opción 1: Palíndromo"<<endl;
@@ -115,13 +119,18 @@ int main (int argc, char* argv[]){
             case 6:{
                 cout << "Saliendo..." << endl;
                 break;
+            } 
+            case 7: {
+                contarmenu();
+                cout << "opcion 7" << endl;
+                break;
             }
             default:
                 cout<<endl << "\033[31m" << "Opción inválida. Intente de nuevo.!!!!"<<"\033[0m" << endl;
             
         }
     }
-    while (opcion != 6);
+    while (opcion != 6 && opcion != 7);
 
     return 0;
 }

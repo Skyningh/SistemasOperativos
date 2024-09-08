@@ -6,6 +6,7 @@
 #include <cctype> 
 #include <sstream>
 #include <fstream>
+#include <unistd.h>
 
 using namespace std;
 
@@ -153,4 +154,16 @@ int verificacion(string username, string password, string frase, vector <int> ve
 
     // Si todas las verificaciones pasan
     return 0;
+}
+
+void contarmenu(){
+    pid_t pid = getpid();
+    cout << "\nPrograma contador de palabras" << endl;
+    cout << "PID: " << pid << endl;
+    cout << "seleccione la opcion: " << endl;
+    cout << "\n\t0) Salir" << endl;
+    cout << "\t1) Extensión de archivos a procesar(ej:txt)" << endl;
+    cout << "\t2) Path de carpeta a procesar (eje: /home/usuario/in)" << endl;
+    cout << "\t3) Path de carpeta que contendrá la respuesta del proceso (eje: /home/usuario/out)" << endl;
+    cout << "\t4) Procesar" << endl;
 }
