@@ -183,19 +183,16 @@ int contarmenu(){
                 case 1: {
                     cout << "Opción 1: Extensión de archivos a procesar" << endl;
                     check1 = true;
-                    if (subMenu() == 0) return 0;
                     break;
                 }
                 case 2: {
                     cout << "Opción 2: Path de carpeta a procesar" << endl;
                     check2 = true;
-                    if (subMenu() == 0) return 0;
                     break;
                 }
                 case 3: {
                     cout << "Opción 3: Path de carpeta que contendrá la respuesta del proceso" << endl;
                     check3 = true;
-                    if (subMenu() == 0) return 0;
                     break;
                 }
                 case 4: {
