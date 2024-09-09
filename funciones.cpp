@@ -7,16 +7,19 @@
 #include <sstream>
 #include <fstream>
 #include <unistd.h>
+#include <cctype>
 
 using namespace std;
 
-string palindromo(string a){
+string palindromo(string texto){
+    texto.erase(remove(texto.begin(), texto.end(), ' '), texto.end());
+    transform(texto.begin(), texto.end(), texto.begin(), ::tolower);
 
-    if (a.length() < 2) 
+    if (texto.length() < 2) 
         return "es un palíndromo.";
     
-    if (a[0] == a[a.length()-1])
-        return palindromo(a.substr(1, a.length() - 2));
+    if (texto[0] == texto[texto.length()-1])
+        return palindromo(texto.substr(1, texto.length() - 2));
     
     else
         return "no es un palíndromo.";
@@ -71,57 +74,6 @@ vector <int> procesaVector(string a){
     return vec;
 }
 
-int subMenu() {
-    int opcion2;
-    do {
-        cout << "¿Qué desea hacer?" << endl;
-        cout << "1. Volver " << endl;
-        cout << "0. Salir " << endl;
-        cout <<"Escriba aquí: ";
-        cin >> opcion2;
-        
-        if (opcion2 != 0 && opcion2 != 1) {
-            cout << endl << "Error, ingrese la opción otra vez!!!!!!!!" << endl;
-        }
-    } while (opcion2 != 0 && opcion2 != 1);
-    if (opcion2 == 1)
-        cout<<endl<< "Volviendo..."<<endl<<endl;
-    else
-        cout<<endl<< "Saliendo..."<<endl<<endl;
-    return opcion2;
-}
-
-tuple<string, string> leerEnv() {
-    string usernameEnv;
-    string passwordEnv;
-
-    ifstream envFile("holi.env");
-    if (!envFile.is_open()) {
-        cerr << "Error: No se pudo abrir el archivo .env" << endl;
-        return make_tuple(usernameEnv, passwordEnv);
-    }
-
-    string line;
-    while (getline(envFile, line)) {
-        if (line.empty() || line[0] == '#') continue;
-
-        size_t pos = line.find('=');
-        if (pos != string::npos) {
-            string key = line.substr(0, pos);
-            string value = line.substr(pos + 1);
-
-            if (key == "USERNAME") {
-                usernameEnv = value;
-            } else if (key == "PASSWORD") {
-                passwordEnv = value;
-            }
-        }
-    }
-
-    envFile.close();
-    return make_tuple(usernameEnv, passwordEnv);
-}
-
 int verificacion(string username, string password, string frase, vector <int> vec, int num){
     if (username.length() < 3) {
     cout<< "Error, nombre de usuario debe tener al menos 3 caracteres"<<endl;
@@ -156,63 +108,33 @@ int verificacion(string username, string password, string frase, vector <int> ve
     return 0;
 }
 
-int contarmenu(){
-    int opcion3;
-    bool check1 = false, check2 = false, check3 = false;
-    do{
+tuple<string, string> leerEnv() {
+    string usernameEnv;
+    string passwordEnv;
 
-        pid_t pid = getpid();
-        cout << "\nPrograma contador de palabras" << endl;
-        cout << "PID: " << pid << endl;
-        cout << "seleccione la opcion: " << endl;
-        cout << "\n0) Salir" << endl;
-        cout << "1) Extensión de archivos a procesar(ej:txt)" << endl;
-        cout << "2) Path de carpeta a procesar(eje: /home/usuario/in)" << endl;
-        cout << "3) Path de carpeta que contendrá la respuesta del proceso(eje:/home/usuario/out)" << endl;
-        cout << "4) Procesar" << endl;
-        cout << "Escriba aquí: ";
+    ifstream envFile("holi.env");
+    if (!envFile.is_open()) {
+        cerr << "Error: No se pudo abrir el archivo .env" << endl;
+        return make_tuple(usernameEnv, passwordEnv);
+    }
 
-        cin >> opcion3;
+    string line;
+    while (getline(envFile, line)) {
+        if (line.empty() || line[0] == '#') continue;
 
-        switch (opcion3) {
-                case 0: {
-                    cout << "Saliendo..." << endl;
-                    break;
-                }
+        size_t pos = line.find('=');
+        if (pos != string::npos) {
+            string key = line.substr(0, pos);
+            string value = line.substr(pos + 1);
 
-                case 1: {
-                    cout << "Opción 1: Extensión de archivos a procesar" << endl;
-                    check1 = true;
-                    break;
-                }
-                case 2: {
-                    cout << "Opción 2: Path de carpeta a procesar" << endl;
-                    check2 = true;
-                    break;
-                }
-                case 3: {
-                    cout << "Opción 3: Path de carpeta que contendrá la respuesta del proceso" << endl;
-                    check3 = true;
-                    break;
-                }
-                case 4: {
-                    cout << "Opción 4: Procesar" << endl;
-                    if (check1 == true && check2 == true && check3 == true){
-                        //process();
-                        cout << "Procesando..." << endl;
-                    }
-                    else{
-                        cout << "Tienes que completar las opciones 1 2 y 3." << endl;
-                    }
-                    if (subMenu() == 0) return 0;
-                    break;
-
-                default:
-                    cout<<endl << "\033[31m" << "Opción inválida. Intente de nuevo.!!!!"<<"\033[0m" << endl;
-                
+            if (key == "USERNAME") {
+                usernameEnv = value;
+            } else if (key == "PASSWORD") {
+                passwordEnv = value;
             }
         }
     }
-    while(opcion3 != 0);
-    return 0;
+
+    envFile.close();
+    return make_tuple(usernameEnv, passwordEnv);
 }
