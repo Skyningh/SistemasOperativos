@@ -98,15 +98,14 @@ int contarmenu(){
 
 
 
-int menu(string username, string password,string frase, vector <int> vec, float num){
+int menu(Usuario usuario,string frase, vector <int> vec, float num){
+
     int opcion;
     pid_t pid = getpid();
-
-    cout<<endl;
     cout<<"SISTEMA "<<endl;
     cout<<"PID = "<<pid<<endl;
-    cout<<"Nombre de Usuario: "<<username<<endl;
-    cout<<"\033[33m"<<"Rol: [EN PROCESO]"<<"\033[0m"<<endl;
+    cout<<"Nombre de Usuario: "<<usuario.username<<endl;
+    cout<<"Rol: "<<usuario.rol<<endl;
     cout<< "----------------------"<<endl;
     cout << "Elija una de las siguientes opciones:" <<endl;
     cout << "0. Contar palabras." << endl;
@@ -122,7 +121,6 @@ int menu(string username, string password,string frase, vector <int> vec, float 
     cin >> opcion;
 
     switch (opcion) {
-
 
         case 1: {
             cout << "----------------------"<<endl<<endl;

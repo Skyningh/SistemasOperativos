@@ -6,6 +6,15 @@ using namespace std;
 #include <vector>
 #include <tuple>
 
+
+struct Usuario {
+    string username;
+    string password;
+    string rol;
+};
+
+Usuario procesarUsuario(string archivo, string usuario, string password);
+
 string palindromo(string a);
 
 int vocales(string a);
@@ -18,9 +27,9 @@ float prom(vector<int> vec);
 
 vector<int> procesaVector(string a);
 
-tuple<string, string> leerEnv();
+tuple<string, string, string> leerEnv();
 
-int verificacion(string username, string password, string frase, vector<int> vec, int num);
+int verificacion(string frase, vector<int> vec, int num);
 
 int process();
 

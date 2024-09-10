@@ -11,6 +11,38 @@
 
 using namespace std;
 
+
+Usuario procesarUsuario(string archivodb,  string username,  string password) {
+    ifstream archivo("users_bd.txt");
+    string linea;
+    Usuario usuario = {"", "", ""}; // Inicializa un Usuario vacío
+    //Verifica si el archivo se ha abierto correctamente
+    if (!archivo.is_open()) {
+        cerr << "No se pudo abrir el archivo." << endl;
+        return usuario; // Retorna un Usuario vacío en caso de error
+    }
+    //Lee el archivo línea por línea
+    while (getline(archivo, linea)) {
+        stringstream ss(linea);
+        string user, pass, rol;
+
+        //Extrae los campos separados por ','
+        getline(ss, user, ',');
+        getline(ss, pass, ',');
+        getline(ss, rol, ',');
+        //Compara el usuario y la contraseña ingresados con los del archivo
+        if (user == username && pass == password) {
+            usuario.username = user;
+            usuario.password = pass;
+            usuario.rol = rol;
+            return usuario; // Coincidencia encontrada
+        }
+    }
+
+    //No se encontró coincidencia
+    return usuario; // Retorna un Usuario vacío si no se encontró
+}
+
 string palindromo(string texto){
     texto.erase(remove(texto.begin(), texto.end(), ' '), texto.end());
     transform(texto.begin(), texto.end(), texto.begin(), ::tolower);
@@ -74,30 +106,7 @@ vector <int> procesaVector(string a){
     return vec;
 }
 
-int verificacion(string username, string password, string frase, vector <int> vec, int num){
-    if (username.length() < 3) {
-    cout<< "Error, nombre de usuario debe tener al menos 3 caracteres"<<endl;
-        return 1;  // Nombre de usuario demasiado corto
-    }
-    for (char c : username) {
-        if (!isalpha(c)) {
-            cout<< "Error, nombre de usuario solo debe contener letras."<<endl;
-            return 1;  // Nombre de usuario contiene caracteres no alfabéticos
-        }
-    }
-
-    // Verificar password: debe tener más de 6 caracteres y ser alfanumérico
-    if (password.length() <= 6) {
-        cout<< "Error, la contraseña debe tener al menos 6 caracteres."<<endl;
-        return 1;  // Contraseña demasiado corta
-    }
-    for (char c : password) {
-        if (!isalnum(c)) {
-             cout<< "Error, la contraseña solo debe contener letras y números."<<endl;
-            return 1;  // Contraseña contiene caracteres no alfanuméricos
-        }
-    }
-
+int verificacion(string frase, vector <int> vec, int num){
     // Verificar num: no puede ser 0
     if (num == 0) {
         cout<< "Error, debe ingresar un numero que sea distinto de cero."<<endl;
@@ -108,14 +117,15 @@ int verificacion(string username, string password, string frase, vector <int> ve
     return 0;
 }
 
-tuple<string, string> leerEnv() {
+tuple<string, string, string> leerEnv() {
     string usernameEnv;
     string passwordEnv;
-
+    string path;
+    
     ifstream envFile("holi.env");
     if (!envFile.is_open()) {
         cerr << "Error: No se pudo abrir el archivo .env" << endl;
-        return make_tuple(usernameEnv, passwordEnv);
+        return make_tuple(usernameEnv, passwordEnv, path);
     }
 
     string line;
@@ -131,10 +141,12 @@ tuple<string, string> leerEnv() {
                 usernameEnv = value;
             } else if (key == "PASSWORD") {
                 passwordEnv = value;
+            } else if (key == "PATHBD"){
+                path = value;
             }
         }
     }
 
     envFile.close();
-    return make_tuple(usernameEnv, passwordEnv);
+    return make_tuple(usernameEnv, passwordEnv, path);
 }

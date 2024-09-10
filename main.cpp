@@ -19,7 +19,7 @@ int main (int argc, char* argv[]){
         return 1;
     }
 
-    auto [usernameEnv, passwordEnv] = leerEnv();
+    auto [usernameEnv, passwordEnv, pathBD] = leerEnv();
 
     int opt;
     string username = "";
@@ -52,20 +52,20 @@ int main (int argc, char* argv[]){
         }
     }
 
-    //Verificación de parámetros
-    if (verificacion(username, password, frase, vec, num) == 1){
-        cout<< "Cancelando..."<<endl;
+    Usuario usuario = procesarUsuario(pathBD, username, password);
+    if (usuario.username == "" || usuario.password ==  ""){
+        cerr<< "Error: Usuario o contraseña incorrectos."<<endl;
         return 1;
-    }
-    
-    if (username != usernameEnv || password != passwordEnv) {
-        cerr << "Error: Usuario o contraseña incorrectos." << endl;
+    } 
+    //Verificación de parámetros
+    if (verificacion(frase, vec, num) == 1){
+        cout<< "Cancelando..."<<endl;
         return 1;
     }
 
     int opcion;
     do {
-        opcion = menu(username, password, frase, vec, num);
+        opcion = menu(usuario, frase, vec, num);
     }
     while (opcion != 6 && opcion != 7);
 
