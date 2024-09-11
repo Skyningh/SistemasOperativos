@@ -1,0 +1,9 @@
+como; 1
+cuando; 5
+sabes; 1
+se; 4
+si; 1
+solo; 3
+soy; 9
+una; 1
+yo; 6
