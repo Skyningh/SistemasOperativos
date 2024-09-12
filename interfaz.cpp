@@ -8,6 +8,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <unistd.h>
+#include <sys/wait.h>
 #include "funciones.h"
 
 using namespace std;
@@ -167,7 +168,20 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
             return 6;
         } 
         case 6: {
-            contarmenu();
+            pid_t pidc = fork();
+            if(pidc == -1){
+                cerr << "Falló el fork" << endl;
+                return 0;
+            } else if (pidc == 0){
+                execl("/home/rudy/2024/SO/SistemasOperativos/procesar", "procesar", NULL);
+                cerr << "Error ejecutando programa hijo" << endl;
+            } else{
+                int status;
+                waitpid(pidc, &status, 0);
+                if (WIFEXITED(status)){
+                    cout << "Terminó el proceso hijo" << endl;
+                }
+            }
             return 6; //Si retorna 6, tira la opción "6", que es salir del programa QUE ENREDO ESTOS RETURN DIOSSSS
         }
         
