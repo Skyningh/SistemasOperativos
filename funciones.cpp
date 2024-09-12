@@ -11,14 +11,13 @@
 
 using namespace std;
 
-
-Usuario procesarUsuario(string archivodb,  string username,  string password) {
-    ifstream archivo("users_bd.txt");
+Usuario procesarUsuario(string username,  string password, string file) {
+    ifstream archivo(file);
     string linea;
     Usuario usuario = {"", "", ""}; // Inicializa un Usuario vacío
     //Verifica si el archivo se ha abierto correctamente
     if (!archivo.is_open()) {
-        cerr << "No se pudo abrir el archivo." << endl;
+        cerr<<"\033[31m"<< "No se pudo abrir el archivo."<<"\033[0m" << endl;
         return usuario; // Retorna un Usuario vacío en caso de error
     }
     //Lee el archivo línea por línea
@@ -27,9 +26,9 @@ Usuario procesarUsuario(string archivodb,  string username,  string password) {
         string user, pass, rol;
 
         //Extrae los campos separados por ','
-        getline(ss, user, ',');
-        getline(ss, pass, ',');
-        getline(ss, rol, ',');
+        getline(ss, user, ';');
+        getline(ss, pass, ';');
+        getline(ss, rol, ';');
         //Compara el usuario y la contraseña ingresados con los del archivo
         if (user == username && pass == password) {
             usuario.username = user;
@@ -106,16 +105,6 @@ vector <int> procesaVector(string a){
     return vec;
 }
 
-int verificacion(string frase, vector <int> vec, int num){
-    // Verificar num: no puede ser 0
-    if (num == 0) {
-        cout<< "Error, debe ingresar un numero que sea distinto de cero."<<endl;
-        return 1;  // Número inválido
-    }
-
-    // Si todas las verificaciones pasan
-    return 0;
-}
 
 tuple<string, string, string> leerEnv() {
     string usernameEnv;
@@ -149,4 +138,169 @@ tuple<string, string, string> leerEnv() {
 
     envFile.close();
     return make_tuple(usernameEnv, passwordEnv, path);
+}
+
+void eliminarUsuarios(string usuario, string password, string file){
+    ifstream archivo(file);
+    ofstream archivoTemporal("temp.txt");
+    string linea;
+    bool usuarioEncontrado = false;
+    bool primeraLinea = true;
+
+
+    if (!archivo.is_open()) {
+        cerr <<"\033[31m"<< "No se pudo abrir el archivo " << file <<"\033[0m"<< endl;
+        return;
+    }
+
+    if (!archivoTemporal.is_open()) {
+        cerr << "No se pudo crear el archivo temporal." << endl;
+        archivo.close();
+        return;
+    }
+
+    while (getline(archivo, linea)) {
+        istringstream ss(linea);
+        string user, pass, tipo;
+
+        getline(ss, user, ';');
+        getline(ss, pass, ';');
+        getline(ss, tipo, ';');
+        
+        if (user == usuario) {
+            usuarioEncontrado = true;
+
+            // Verificar si el password es incorrecto
+            if (pass != password) {
+                cout << "\033[31m" << "Error: La contraseña es incorrecta para el usuario '" << usuario << "'." << "\033[0m" << endl;
+                remove("temp.txt");
+                archivo.close();
+                archivoTemporal.close();
+                return;
+            }
+
+            // Verificar si el tipo no es "user"
+            if (tipo != "user") {
+                cout << "\033[31m" << "Error: El usuario '" << usuario << "' no es de tipo 'user'"<<"\033[0m" << endl;
+                remove("temp.txt");
+                archivo.close();
+                archivoTemporal.close();
+                return;
+            }
+            // Si el usuario y contraseña coinciden y es "user", no escribimos la línea para eliminarlo
+            continue;
+        }
+
+            if (!primeraLinea) {
+                archivoTemporal << endl;  //Agrega nueva línea solo si no es la primera
+            }
+
+            archivoTemporal << linea;
+            primeraLinea = false;
+    }
+    archivo.close();
+    archivoTemporal.close();
+
+    if (!usuarioEncontrado) {
+        cout<<"\033[31m"<< "Error: El usuario '" << usuario << "' no fue encontrado."<<"\033[0m"<< endl;
+        remove("temp.txt");
+    } else {
+        if (remove(file.c_str()) != 0) {
+            cerr <<"\033[31m"<< "Error al eliminar el archivo original." <<"\033[0m"<< endl;
+            return;
+        }
+        if (rename("temp.txt", file.c_str()) != 0) {
+            cerr<<"\033[31m" << "Error al renombrar el archivo temporal." <<"\033[0m"<< endl;
+            return;
+        }
+        cout <<"\033[32m"<< "Usuario '" << usuario << "' borrado correctamente." <<"\033[0m"<< endl;
+    }
+}
+
+void crearUsuario(string username, string password, string tipo, string file){
+    //abrir el archivo con modo append (ios::app)
+    ofstream archivo(file, ios::app);
+    
+    if (archivo.is_open()) {
+        archivo <<endl<<username << ";" << password << ";" << tipo;
+        archivo.close();
+        cout <<"\033[32m"<< "El usuario fue creado correctamente." <<"\033[0m"<< endl<<endl;
+    } else {
+        cerr << "Ocurrió un error al abrir el archivo para crear el usuario." << endl;
+    }
+}
+
+void listarUsuarios(string file){
+    ifstream archivo(file);
+    string linea;
+    if (!archivo.is_open()) {
+        cerr << "No se pudo abrir el archivo." << endl;
+    }
+    int count = 1;
+    //Lee el archivo línea por línea
+    while (getline(archivo, linea)) {
+        stringstream ss(linea);
+        string user, pass, rol;
+
+        //Extrae los campos separados por ','
+        getline(ss, user, ';');
+        getline(ss, pass, ';');
+        getline(ss, rol, ';');
+
+    cout<<count<<".- "<<"Usuario: "<<user<<endl;
+    cout<<"Contraseña: "<<pass<<endl;
+    cout<<"Rol: "<<rol<<endl<<endl;
+    count++;
+    }
+}
+
+int verificarUser(string username, string password, string tipo, string file){
+    //verificamos username
+    if (username.length() < 3) {
+        cout << "Error, el nombre de usuario debe tener al menos 3 caracteres." << endl;
+        return 0;
+    }
+    for (char c: username)
+        if (!isalpha(c)) {
+            cout << "Error, el nombre de usuario solo puede contener letras." << endl;
+            return 0;
+        }
+    //verificamos password
+    if (password.length() < 6) {
+        cout << "Error, la contraseña debe tener al menos 6 caracteres." << endl;
+        return 0;
+    }
+    for (char c: password)
+        if (!isalnum(c)) {
+            cout << "Error, la contraseña solo puede contener letras o números." << endl;
+            return 0;
+        }
+
+    //verificamos el tipo, que sea admin o user
+    if (tipo != "admin" && tipo != "user") {
+        cout << "Error, el tipo debe ser 'admin' o 'user'." << endl;
+        return 0;
+    }
+
+    //verificamos si el usuario ya existe
+    ifstream archivo(file);
+    if (!archivo.is_open()) {
+        cerr << "No se pudo abrir el archivo para la verificación." << endl;
+        return 0;
+    }
+
+    string linea, user;
+    while (getline(archivo, linea)) {
+        istringstream ss(linea);
+        getline(ss, user, ';');
+        if (user == username) {
+            cout << "Error, el usuario '" << username << "' ya existe." << endl;
+            archivo.close();
+            return 0;
+        }
+    }
+
+    archivo.close();
+
+    return 1;
 }

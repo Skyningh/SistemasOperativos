@@ -7,5 +7,5 @@ using namespace std;
 
 int contarmenu();
 int subMenu();
-int menu(Usuario usuario,string frase, vector <int> vec, float num);
+int menu(Usuario usuario,string frase, vector <int> vec, float num, string path);
 #endif

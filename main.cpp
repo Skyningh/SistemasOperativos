@@ -52,20 +52,20 @@ int main (int argc, char* argv[]){
         }
     }
 
-    Usuario usuario = procesarUsuario(pathBD, username, password);
+    Usuario usuario = procesarUsuario(username, password, pathBD);
     if (usuario.username == "" || usuario.password ==  ""){
         cerr<< "Error: Usuario o contraseña incorrectos."<<endl;
         return 1;
     } 
     //Verificación de parámetros
-    if (verificacion(frase, vec, num) == 1){
-        cout<< "Cancelando..."<<endl;
-        return 1;
+    if (num == 0) {
+        cout<<"\033[31m"<< "Error, debe ingresar un numero que sea distinto de cero."<<"\033[0m"<<endl;
+        return 1;  // Número inválido
     }
-
+    
     int opcion;
     do {
-        opcion = menu(usuario, frase, vec, num);
+        opcion = menu(usuario, frase, vec, num, pathBD);
     }
     while (opcion != 6 && opcion != 7);
 

@@ -1,4 +1,4 @@
-esperanzatej,leo123,admin
-luisvea,veas22,admin
-rudyy,rudyhola1,admin
-pedrito,pedrogg,user
+esperanzatej;leo123;admin
+luisvea;veas22;admin
+rudyy;rudyhola1;admin
+pepita;pepita1;user

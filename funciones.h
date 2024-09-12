@@ -13,7 +13,7 @@ struct Usuario {
     string rol;
 };
 
-Usuario procesarUsuario(string archivo, string usuario, string password);
+Usuario procesarUsuario(string usuario, string password, string file);
 
 string palindromo(string a);
 
@@ -29,8 +29,12 @@ vector<int> procesaVector(string a);
 
 tuple<string, string, string> leerEnv();
 
-int verificacion(string frase, vector<int> vec, int num);
+void eliminarUsuarios(string usuario, string contraseña, string file);
 
-int process();
+void crearUsuario(string username, string password, string tipo, string file);
+
+void listarUsuarios(string file);
+
+int verificarUser(string username, string password, string tipo, string file);
 
 #endif // FUNCTIONS_H
