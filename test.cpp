@@ -154,6 +154,7 @@ int main(){
                     if (check1 == true && check2 == true && check3 == true){
                         cout << "Procesando..." << endl;
                         procesar(extension, pathIn, pathOut);
+                        return 0;
                     }
                     else{
                         cout << "Tienes que completar las opciones 1 2 y 3." << endl;
