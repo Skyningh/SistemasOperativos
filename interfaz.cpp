@@ -169,7 +169,7 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         } 
         case 6: {
             //Ejecuta programa externo
-            int status = system("/home/rudy/2024/SO/SistemasOperativos/procesar");
+            int status = system("/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/procesar");
             if (status == -1){
                 cerr << "Falló la ejecución del programa hijo" << endl;
             } else{

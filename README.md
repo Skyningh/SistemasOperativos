@@ -1,6 +1,7 @@
 # [Trabajo 1
 ## Descripcion
-Este programa es una ipequeña nterfaz que realiza diversas funciones desde los parámetros ingresados en consola.
+Este programa es una interfaz que realiza diversas funciones desde los parámetros ingresados en consola, además de manejar autenticación de usuarios y realizar un conteo de palabras en archivos de texto. La autenticación se realiza utilizando una "base de datos" de usuarios almacenada en un archivo de texto.
+
 
 ## Requisitos
 - Un ordenador con Linux, macOS o Windows
@@ -23,29 +24,73 @@ Después de compilar, se debe ejecutar como ./trabajo1 -u usuario -p contraseña
 | n | Un número entero |
 
 ## Funciones
-string palindromo(string a); 
-Verifica si un texto es palíndromo 
 
-int vocales(string a);
-Verifica el número de vocales de un texto
+### Lógica general del programa (`funciones.cpp`)
 
-int letras(string a);
-Verifica el número de letras de un texto 
+Estas funciones gestionan la lógica principal del programa:
 
-int sum(vector<int> vec);
-Retorna la suma de los números de un vector
+- **`Usuario procesarUsuario(string usuario, string password, string file)`**  
+  Crea un usuario con los parámetros ingresados y realiza las verificaciones necesarias.
 
-float prom(vector<int> vec);
-Retorna el promedio de un vector
+- **`string palindromo(string a)`**  
+  Verifica si el texto ingresado es un palíndromo.
 
-vector<int> procesaVector(string a);
-Procesa el vector ingresado, convirtiéndolo en un vector 
+- **`int vocales(string a)`**  
+  Retorna el número de vocales en el texto ingresado.
 
-int subMenu();
-Despliega un subMenu para volver atrás
+- **`int letras(string a)`**  
+  Cuenta la cantidad de letras en el texto ingresado.
 
-tuple<string, string, char> leerEnv();
-Lee el .env
+- **`int sum(vector<int> vec)`**  
+  Retorna la suma de los números en el vector ingresado.
 
-int verificacion(string username, string password, string frase, vector<int> vec, int num);
-Verifica cada error que puedan tener los parámetros ingresados
+- **`float prom(vector<int> vec)`**  
+  Calcula y retorna el promedio de los números en el vector ingresado.
+
+- **`vector<int> procesaVector(string a)`**  
+  Convierte una cadena de texto en un vector de enteros.
+
+- **`tuple<string, string, string> leerEnv()`**  
+  Lee las variables de entorno del archivo `.env`.
+
+- **`void eliminarUsuarios(string usuario, string contraseña, string file)`**  
+  Elimina usuarios de la base de datos.
+
+- **`void crearUsuario(string username, string password, string tipo, string file)`**  
+  Crea un nuevo usuario y lo guarda en la base de datos.
+
+- **`void listarUsuarios(string file)`**  
+  Lista todos los usuarios almacenados en la base de datos.
+
+- **`int verificarUser(string username, string password, string tipo, string file)`**  
+  Verifica si un usuario cumple con las condiciones para ser creado.
+
+### Interfaz del programa (`interfaz.cpp`)
+
+Estas funciones manejan la interfaz del usuario:
+
+- **`int contarmenu()`**  
+  Menú para la función de contar palabras.
+
+- **`int subMenu()`**  
+  Submenú para volver atrás.
+
+- **`int menu(Usuario usuario, string frase, vector<int> vec, float num, string path)`**  
+  Menú principal del programa.
+
+### Procesamiento de archivos de texto (`procesar.cpp`)
+
+Estas funciones procesan los archivos de texto:
+
+- **`string convertirMinusculas(string palabra)`**  
+  Convierte las palabras a minúsculas.
+
+- **`string eliminarPuntuacion(string palabra)`**  
+  Elimina la puntuación de una palabra.
+
+- **`void contarPalabras(string ruta_archivo, string pathOut)`**  
+  Procesa los archivos y cuenta las palabras.
+
+- **`int procesar(string ext, string pathIn, string pathOut)`**  
+  Aplica la función de contar palabras a todos los archivos en la carpeta de entrada.
+
