@@ -99,45 +99,12 @@ vector <int> procesaVector(string a){
     string token;
     vector <int> vec;
     
-    while (getline(ss, token, ',')) 
+    while (getline(ss, token, ';')) 
         vec.push_back(stoi(token));  // Convertir cada token a entero y añadirlo al vector
     
+    cout<<endl;
     return vec;
-}
 
-
-tuple<string, string, string> leerEnv() {
-    string usernameEnv;
-    string passwordEnv;
-    string path;
-    
-    ifstream envFile("holi.env");
-    if (!envFile.is_open()) {
-        cerr << "Error: No se pudo abrir el archivo .env" << endl;
-        return make_tuple(usernameEnv, passwordEnv, path);
-    }
-
-    string line;
-    while (getline(envFile, line)) {
-        if (line.empty() || line[0] == '#') continue;
-
-        size_t pos = line.find('=');
-        if (pos != string::npos) {
-            string key = line.substr(0, pos);
-            string value = line.substr(pos + 1);
-
-            if (key == "USERNAME") {
-                usernameEnv = value;
-            } else if (key == "PASSWORD") {
-                passwordEnv = value;
-            } else if (key == "PATHBD"){
-                path = value;
-            }
-        }
-    }
-
-    envFile.close();
-    return make_tuple(usernameEnv, passwordEnv, path);
 }
 
 void eliminarUsuarios(string usuario, string password, string file){
@@ -303,4 +270,25 @@ int verificarUser(string username, string password, string tipo, string file){
     archivo.close();
 
     return 1;
+}
+
+void envLoad() {
+    const char* envFile = "var.env";
+    ifstream file(envFile);
+    if (!file) {
+        cerr << "No se pudo abrir el archivo .env" << endl;
+        exit(1);
+    }
+
+    string line;
+    while (getline(file, line)) {
+        size_t equalsPos = line.find('=');
+        if (equalsPos != string::npos) {
+            string key = line.substr(0, equalsPos);
+            string value = line.substr(equalsPos + 1);
+            setenv(key.c_str(), value.c_str(), 1);
+        }
+    }
+
+    file.close();
 }

@@ -24,17 +24,23 @@ int subMenu() {
         cin >> opcion2;
         
         if (opcion2 != 0 && opcion2 != 1) {
+            system("clear");
             cout << endl<<"\033[31m"<< "Error, ingrese la opción otra vez!!!!!!!!"<<"\033[0m"<< endl;
         }
     } while (opcion2 != 0 && opcion2 != 1);
-    if (opcion2 == 1)
+    if (opcion2 == 1){
+        system("clear");
         cout<<"\033[32m"<<endl<< "Volviendo..."<<"\033[0m"<<endl<<endl;
-    else
+    }
+    else{
+        system("clear");
         cout<<"\033[32m"<<endl<< "Saliendo..."<<"\033[30m"<<endl<<endl;
+    }
     return opcion2;
 }
 
 int contarmenu(){
+    system("clear");
     int opcion3;
     bool check1 = false, check2 = false, check3 = false;
     do{
@@ -55,21 +61,25 @@ int contarmenu(){
 
         switch (opcion3) {
                 case 0: {
+                    system("clear");
                     cout<<"\033[32m" << "Saliendo..."<<"\033[0m" << endl;
                     break;
                 }
 
                 case 1: {
+                    system("clear");
                     cout << "Opción 1: Extensión de archivos a procesar" << endl;
                     check1 = true;
                     break;
                 }
                 case 2: {
+                    system("clear");
                     cout << "Opción 2: Path de carpeta a procesar" << endl;
                     check2 = true;
                     break;
                 }
                 case 3: {
+                    system("clear");
                     cout << "Opción 3: Path de carpeta que contendrá la respuesta del proceso" << endl;
                     check3 = true;
                     break;
@@ -83,10 +93,12 @@ int contarmenu(){
                     else{
                         cout<<"\033[3m" << "Tienes que completar las opciones 1 2 y 3."<<"\033[0m" << endl;
                     }
+                    system("clear");
                     if (subMenu() == 0) return 0;
                     break;
 
                 default:
+                    system("clear");
                     cout<<endl << "\033[31m" << "Opción inválida. Intente de nuevo.!!!!"<<"\033[0m" << endl;
                 
             }
@@ -106,8 +118,8 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
     cout<<"SISTEMA "<<endl;
     cout<<"PID = "<<pid<<endl;
     cout<<"Nombre de Usuario: "<<usuario.username<<endl;
-    cout<<"Rol: "<<usuario.rol<<endl;
-    cout<< "----------------------"<<endl;
+    cout<<"Rol: "<<usuario.rol<<endl<<endl;
+    cout << "########################"<<endl<<endl;
     cout << "Elija una de las siguientes opciones:" <<endl;
     cout << "1. Verificar si la frase es un palíndromo." << endl;
     cout << "2. Contar el número de vocales de la frase." << endl;
@@ -129,37 +141,53 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
     switch (opcion) {
 
         case 1: {
-            cout << "----------------------"<<endl<<endl;
+            system("clear");
+            cout << "########################"<<endl<<endl;
             cout <<"Opción 1: Palíndromo"<<endl;
-            cout <<"La frase '" <<frase <<"' "<< palindromo(frase)<<endl<<endl;
+            cout <<"La frase '" <<frase <<"' "<< palindromo(frase)<<endl<<endl  ;
+            cout << "########################"<<endl<<endl;
             if (subMenu() == 0) return 6;
             break;
         }
         case 2: {
-            cout << "----------------------"<<endl<<endl;
+            system("clear");
+            cout << "########################"<<endl<<endl;
             cout <<"Opción 2: Número de vocales"<<endl;
             cout <<"La frase " <<frase << " tiene " << vocales(frase)<<" vocales."<<endl<<endl;
+            cout << "########################"<<endl<<endl;
             if (subMenu() == 0) return 6;
             break;
         }
         case 3: {
-            cout << "----------------------"<<endl<<endl;
+            system("clear");
+            cout << "########################"<<endl<<endl;
             cout <<"Opción 3: Número de letras"<<endl;
             cout << "La frase: "<<frase<<" tiene " <<letras(frase)<<" letras." <<endl<<endl;
+            cout << "########################"<<endl<<endl;
+
             if (subMenu() == 0) return 6;
             break;
         }
         case 4: {
-            cout << "----------------------"<<endl<<endl;
-            cout <<"Opción 4: Suma y promedio del vector"<<endl;
-            cout<<"La suma es: " <<sum(vec)<<endl;
+            system("clear");
+            cout << "########################"<<endl<<endl;
+            cout <<"Opción 4: Suma y promedio del vector: "<<endl;
+            cout << "Vector: ";
+            for (int i=0; i < size(vec); i++){
+                cout<< vec[i] <<" ";
+            }
+            cout<<"\nLa suma es: " <<sum(vec)<<endl;
             cout<<"Y el promedio: "<<prom(vec)<<endl<<endl;
+            cout << "########################"<<endl<<endl;
             if (subMenu() == 0) return 6;
             break;
         }
         case 5: {
-            cout << "----------------------"<<endl<<endl;
-            cout << "Opción 5: 5x²+(1/x) ="<< 5*num*num+(1/num) << endl<<endl;
+            system("clear");
+            cout << "########################"<<endl<<endl;
+            cout << "Opción 5: 5x²+(1/x)  [Con num = "<<num<<"]"<<endl;
+            cout << "Resultado: "<<5*num*num+(1/num) << endl<<endl;
+            cout << "########################"<<endl<<endl;
             if (subMenu() == 0) return 6;
             break;
         }
@@ -168,6 +196,7 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
             return 6;
         } 
         case 6: {
+            system("clear");
             //Ejecuta programa externo
             int status = system("/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/procesar");
             if (status == -1){
@@ -184,7 +213,8 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         // Opciones adicionales solo para administradores
         case 7:{//Ingresar nuevos usuarios
             if (usuario.rol == "admin") {
-                cout << "----------------------"<<endl<<endl;
+                system("clear");
+                cout << "########################"<<endl<<endl;
                 cout << "Opción 7: Agregar un nuevo usuario" << endl;
                 string username, password, tipo;
                 bool usercorrecto = false;
@@ -195,7 +225,7 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
                     cin >> password;
                     cout << "Ingrese el tipo de usuario (admin/user): ";
                     cin >> tipo;
-
+                    
                     if (verificarUser(username, password, tipo, PATHDB) == 1) 
                         usercorrecto = true;
                     else 
@@ -212,7 +242,8 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         }
         case 8:{
             if (usuario.rol == "admin") {
-                cout << "----------------------"<<endl<<endl;
+                system("clear");
+                cout << "########################"<<endl<<endl;
                 cout << "Opción 8: Eliminar usuarios" << endl;
                 string username;
                 string password;
@@ -231,7 +262,8 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         }
         case 9:{
             if (usuario.rol == "admin") {
-                cout << "----------------------"<<endl<<endl;
+                system("clear");
+                cout << "########################"<<endl<<endl;
                 cout << "Opción 9: Lista de usuarios." << endl;
                 listarUsuarios(PATHDB);
                 if (subMenu() == 0) return 6;

@@ -14,12 +14,12 @@ using namespace std;
 
 int main (int argc, char* argv[]){
     if (argc != 11) {
+        system("clear");
         cout<<"\033[31m"<< "ERROR!!! Número incorrecto de argumentos."<<"\033[0m"<<endl;
         cout<<"Deben ser de la forma './trabajo1 -u user -p password -t texto -v vector -n numero'." << endl;
         return 1;
     }
 
-    auto [usernameEnv, passwordEnv, pathBD] = leerEnv();
 
     int opt;
     string username = "";
@@ -27,6 +27,8 @@ int main (int argc, char* argv[]){
     string frase = " ";
     vector <int> vec = {}; 
     float num;
+    envLoad();
+    char* pathBD = getenv("PATHBD");
 
     //Ciclo while para capturar los parámetros de la línea de comandos
     while ((opt = getopt(argc, argv, "u:p:t:v:n:")) != -1) {
@@ -54,11 +56,13 @@ int main (int argc, char* argv[]){
 
     Usuario usuario = procesarUsuario(username, password, pathBD);
     if (usuario.username == "" || usuario.password ==  ""){
+        system("clear");
         cerr<< "Error: Usuario o contraseña incorrectos."<<endl;
         return 1;
     } 
     //Verificación de parámetros
     if (num == 0) {
+        system("clear");
         cout<<"\033[31m"<< "Error, debe ingresar un numero que sea distinto de cero."<<"\033[0m"<<endl;
         return 1;  // Número inválido
     }

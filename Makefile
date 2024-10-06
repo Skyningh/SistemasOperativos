@@ -1,6 +1,6 @@
 TARGET = trabajo1
 
-SRCS = main.cpp funciones.cpp interfaz.cpp
+SRCS = main.cpp funciones.cpp interfaz.cpp  # Agregado procesar.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 CXX = g++
@@ -21,4 +21,3 @@ clean-all: clean
 	rm -f holi.env
 
 .PHONY: all clean clean-all
-	

@@ -37,4 +37,5 @@ void listarUsuarios(string file);
 
 int verificarUser(string username, string password, string tipo, string file);
 
+void envLoad();
 #endif // FUNCTIONS_H

@@ -101,8 +101,7 @@ int main(){
     cout << "\nPrograma contador de palabras" << endl;
     cout << "PID: " << pid << endl;
     
-    do{
-
+    do{ 
         cout << "seleccione la opción: " << endl;
         cout << "\n0) Salir" << endl;
         cout << "1) Extensión de archivos a procesar(ej:txt)" << endl;
@@ -115,12 +114,13 @@ int main(){
 
         switch (opcion3) {
                 case 0: {
+                    system("clear");
                     cout << "Saliendo..." << endl;
                     break;
                 }
 
                 case 1: {
-                    cout << "Opción 1: Extensión de archivos a procesar" << endl;
+                    cout << "Opción 1: Extensión de archivos a procesar: ";
                     cin >> extension;
                     extension = '.' + extension;
                     cout << "Extension: " << extension << endl;
@@ -128,45 +128,49 @@ int main(){
                     break;
                 }
                 case 2: {
-                    cout << "Opción 2: Path de carpeta a procesar" << endl;
+                    cout << "Opción 2: Path de carpeta a procesar: ";
                     cin >> pathIn;
                     while (!filesystem::exists(pathIn) || !filesystem::is_directory(pathIn)) {
-                        cerr << "La carpeta de entrada no existe o no es un directorio: " << pathIn << endl;
-                        cout << "Por favor ingrese una carpeta que existe: " << endl;
+                        cerr <<"\033[31m"<< "La carpeta de entrada no existe o no es un directorio: " <<"\033[0m"<< pathIn << endl;
+                        cout << "Por favor ingrese una carpeta que existe: ";
                         cin >> pathIn;
                     }
                     check2 = true;
                     break;
                 }
                 case 3: {
-                    cout << "Opción 3: Path de carpeta que contendrá la respuesta del proceso" << endl;
+                    cout << "Opción 3: Path de carpeta que contendrá la respuesta del proceso: ";
                     cin >> pathOut;
                     while (!filesystem::exists(pathOut) || !filesystem::is_directory(pathOut)) {
-                        cerr << "La carpeta de salida no existe o no es un directorio: " << pathOut << endl;
-                        cout << "Por favor ingrese una carpeta que existe: " << endl;
+                        cerr <<"\033[31m"<< "La carpeta de salida no existe o no es un directorio: " <<"\033[0m"<< pathOut << endl;
+                        cout << "Por favor ingrese una carpeta que existe: ";
                         cin >> pathOut;
                     }
                     check3 = true;
                     break;
                 }
                 case 4: {
+                    system("clear");
                     cout << "Opción 4: Procesar" << endl;
                     if (check1 == true && check2 == true && check3 == true){
                         cout << "Procesando..." << endl;
                         procesar(extension, pathIn, pathOut);
                     }
                     else{
-                        cout << "Tienes que completar las opciones 1 2 y 3." << endl;
+                        cout<<"\033[31m" << "Error!, Tienes que completar las opciones 1 2 y 3."<<"\033[0m" << endl;
                     }
                     break;
 
                 default:
+                    system("clear");
+
                     cout<<endl << "\033[31m" << "Opción inválida. Intente de nuevo.!!!!"<<"\033[0m" << endl;
                 
             }
         }
     }
     while(opcion3 != 0);
+    system("clear");
     return 0;
 }
 
