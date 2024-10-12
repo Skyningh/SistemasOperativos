@@ -1,0 +1,9 @@
+mobydick, 0
+orgulloyprejuicio, 1
+crimenycastigo, 2
+elseñordelosanillos, 3
+cienañosdesoledad, 4
+cementeriodeanimales, 5
+harrypotter, 6
+dracula, 7
+output, 8
