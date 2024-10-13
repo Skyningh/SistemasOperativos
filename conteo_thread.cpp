@@ -136,8 +136,10 @@ int procesarConThreads(const string& ruta_input, const string& ruta_output, cons
 
 int main() {
     int opcion3;
-    string pathIn = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/libros";
-    string pathOut = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/prueba";
+    //string pathIn = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/libros";
+    //string pathOut = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/prueba";
+    string pathIn = "/home/rudy/2024/SO/SistemasOperativos/libros";
+    string pathOut = "/home/rudy/2024/SO/SistemasOperativos/prueba";
     string extension = ".txt"; // Puedes modificar la extensión según tus archivos
     int cantidad_threads = 4; // Por defecto, 4 threads
 

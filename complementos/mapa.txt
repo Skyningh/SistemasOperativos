@@ -1,5 +1,8 @@
 crimenycastigo, 0
-elseñordelosanillos, 1
-elresplandor, 2
-mobydick, 3
-dracula, 4
+elresplandor, 1
+dune, 2
+harrypotter, 3
+mobydick, 4
+dracula, 5
+juegodetronos, 6
+elsenordelosanillos, 7
