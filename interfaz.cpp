@@ -131,7 +131,8 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         cout << "7. Agregar un nuevo usuario" << endl;
         cout << "8. Eliminar usuarios" << endl;
         cout << "9. Lista de usuarios" << endl;
-
+        cout << "10. Conteo paralelo con threads" << endl;
+        cout << "11. Crear índice invertido" << endl;
     }
     cout << "0. Salir" << endl;
 
@@ -269,6 +270,28 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
                 if (subMenu() == 0) return 6;
 
             } else {
+                cout<<"\033[31m"<< "Opción inválida, intente de nuevo!!" <<"\033[0m"<<endl;
+            }
+            break;
+        }
+        case 10:{ // HACER QUE LA 11 REVISE SI SE EJECUTO LA 10
+            if (usuario.rol == "admin"){
+                system("clear");
+                cout << "Opción 10" << endl;
+                if (subMenu() == 0) return 6;
+            }
+            else {
+                cout<<"\033[31m"<< "Opción inválida, intente de nuevo!!" <<"\033[0m"<<endl;
+            }
+            break;
+        }
+        case 11:{
+            if (usuario.rol == "admin"){
+                system("clear");
+                cout << "Opción 11" << endl;
+                if (subMenu() == 0) return 6;
+            }
+            else{
                 cout<<"\033[31m"<< "Opción inválida, intente de nuevo!!" <<"\033[0m"<<endl;
             }
             break;
