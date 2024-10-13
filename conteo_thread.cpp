@@ -8,24 +8,26 @@
 #include <thread>
 #include <vector>
 #include <mutex>
-#include <queue>
 #include <condition_variable>
+#include <queue>
 #include <unistd.h>
 
 using namespace std;
 
-mutex mtx; //Mutex -> Exclusión mutua (Sirve para bloquear un recurso para que solo un thread puede acceder a este en un momento dado.)
-condition_variable cv; //Variable de condición para sincronización
-queue<pair<string, string>> tareas; //Cola de tareas
+mutex mtx; // Mutex para la exclusión mutua
+mutex cout_mutex; // Mutex para la salida en consola
+condition_variable cv; // Variable de condición para la sincronización
+queue<string> work_queue; // Cola de trabajo para las rutas de archivos
+bool terminado = false; // Bandera para indicar que no hay más tareas
 
-//Convierte las palabras en solo minúsculas
+// Convierte las palabras a minúsculas
 string convertirMinusculas(string palabra) {
     string palabra_minus = palabra;
     transform(palabra_minus.begin(), palabra_minus.end(), palabra_minus.begin(), ::tolower);
     return palabra_minus;
 }
 
-//Elimina caracteres de una palabra
+// Elimina caracteres de una palabra
 string eliminarCaracteres(string palabra) {
     palabra.erase(remove_if(palabra.begin(), palabra.end(), [](char c) {
         return !isalpha(c);
@@ -33,22 +35,19 @@ string eliminarCaracteres(string palabra) {
     return palabra;
 }
 
-//Función que procesa los archivos y cuenta las palabras
-void contarPalabras(string ruta_archivo, string pathOut) {
+// Función que cuenta las palabras
+void contarPalabras(const string& ruta_archivo, const string& pathOut, int thread_id) {
     ifstream archivo(ruta_archivo);
     if (!archivo.is_open()) {
         cerr << "No se pudo abrir el archivo de entrada: " << ruta_archivo << endl;
         return;
     }
 
-    //Mapa que almacena la cantidad de cada palabra
     map<string, int> contador_palabras;
     string linea, palabra;
 
-    //Lectura de archivo
     while (getline(archivo, linea)) {
         stringstream ss(linea);
-        //Extrae cada palabra de la línea
         while (ss >> palabra) {
             palabra = eliminarCaracteres(palabra);
             palabra = convertirMinusculas(palabra);
@@ -59,110 +58,102 @@ void contarPalabras(string ruta_archivo, string pathOut) {
     }
     archivo.close();
 
-    //Aquí bloqueamos el mutex
-    mtx.lock();
-    ofstream archivo_salida(pathOut);
-    if (!archivo_salida.is_open()) {
-        cerr << "No se pudo crear el archivo de salida: " << pathOut << endl;
-        mtx.unlock();
-        return;
-    }
-
-    // Escribe resultado en output
-    for (auto [palabra, cantidad] : contador_palabras) {
-        archivo_salida << palabra << " ; " << cantidad << endl;
-    }
-    archivo_salida.close();
-    mtx.unlock();
-
-    //Imprime path del archivo y la cantidad de palabras distintas (también protegido)
-    mtx.lock();
-    cout<< "Libro "<< ruta_archivo<<"procesado con éxito!"<<endl;
-    cout << "Archivo de salida: " << pathOut << endl;
-    cout << "Cantidad de palabras distintas: " << contador_palabras.size() << endl<<endl;
-    mtx.unlock();
-}
-
-void worker() { //Esta funcion gestiona la cola de trabajo, junto a los hilos
-    while (true) {
-        pair<string, string> tarea;
-        
-        {
-            // Bloquear hasta que haya tareas disponibles
-            unique_lock<mutex> lock(mtx);
-            cv.wait(lock, [] { return !tareas.empty(); });
-
-            // Obtener la tarea de la cola
-            tarea = tareas.front();
-            tareas.pop();
+    {
+        lock_guard<mutex> lock(mtx);
+        ofstream archivo_salida(pathOut);
+        if (!archivo_salida.is_open()) {
+            cerr << "No se pudo crear el archivo de salida: " << pathOut << endl;
+            return;
         }
 
-        // Procesar la tarea
-        contarPalabras(tarea.first, tarea.second);
+        for (auto [palabra, cantidad] : contador_palabras) {
+            archivo_salida << palabra << " ; " << cantidad << endl;
+        }
+    }
+
+    {
+        lock_guard<mutex> lock(cout_mutex);
+        cout << "Thread " << thread_id << ": Libro " << ruta_archivo << " procesado con éxito!" << endl;
+        cout << "Archivo de salida: " << pathOut << endl;
+        cout << "Cantidad de palabras distintas: " << contador_palabras.size() << endl << endl;
     }
 }
 
-// Función que se encargará de manejar los threads y controlar el número de threads activos
-int procesarConThreads(string ext, string pathIn, string pathOut, int cantidad_threads) {
+// Función que lee los archivos de un directorio con una extensión específica
+vector<string> lee_archivos(const string& ruta_input, const string& file_type) {
+    vector<string> files;
+    for (const auto& entry : filesystem::directory_iterator(ruta_input)) {
+        if (entry.path().extension() == file_type) {
+            files.push_back(entry.path().string());
+        }
+    }
+    return files;
+}
+
+// Función que maneja la creación de hilos y la asignación de tareas
+int procesarConThreads(const string& ruta_input, const string& ruta_output, const string& file_type, int num_threads) {
+    vector<string> files = lee_archivos(ruta_input, file_type);
     vector<thread> threads;
 
-    // Crear hilos del pool
-    for (int i = 0; i < cantidad_threads; ++i) {
-        threads.emplace_back(worker);
+    // Agregar los archivos a la cola de trabajo
+    for (const string& file : files) {
+        work_queue.push(file);
     }
 
-    // Iterar sobre los archivos en el directorio
-    for (auto& entry : filesystem::directory_iterator(pathIn)) {
-        string nombre_archivo = entry.path().filename().string();
-        string pathArchivoSalida = pathOut + "/" + nombre_archivo;
-
-        // Agregar la tarea a la cola
-        {
-            lock_guard<mutex> lock(mtx);
-            tareas.emplace(entry.path().string(), pathArchivoSalida);
-        }
-        cv.notify_one(); // Notificar a un hilo que hay una nueva tarea
-    }
-
-    // Terminar el trabajo cuando no haya más tareas
-    for (int i = 0; i < cantidad_threads; ++i) {
-        {
-            lock_guard<mutex> lock(mtx);
-            tareas.emplace("", ""); // Se añade una señal de terminación
-        }
-        cv.notify_one();
+    // Crear hilos
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back([&, i]() {
+            while (true) {
+                string file;
+                {
+                    lock_guard<mutex> lock(mtx);
+                    if (!work_queue.empty()) {
+                        file = work_queue.front();
+                        work_queue.pop();
+                        cout_mutex.lock();
+                        cout << "Thread " << i << ": Desocupado y procesando el archivo " << file << endl;
+                        cout_mutex.unlock();
+                    } else {
+                        cout_mutex.lock();
+                        cout << "Thread " << i << ": Esperando por nuevos archivos..." << endl;
+                        cout_mutex.unlock();
+                        break;  // No hay más archivos para procesar.
+                    }
+                }
+                // Procesar el archivo
+                contarPalabras(file, ruta_output + "/" + filesystem::path(file).filename().string(), i);
+            }
+        });
     }
 
     // Unirse a todos los hilos
-    for (auto& t : threads) {
-        t.join();
+    for (auto& thread : threads) {
+        thread.join();
     }
-    return 1;
+
+    return EXIT_SUCCESS;
 }
 
 int main() {
     int opcion3;
-    string pathIn = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/libros" ;
-    string pathOut= "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/prueba";
-    string extension;
-    bool check1 = false, check2 = false, check3 = false;
- 
-    // Leer la cantidad de threads permitidos desde la variable de entorno
+    string pathIn = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/libros";
+    string pathOut = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/prueba";
+    string extension = ".txt"; // Puedes modificar la extensión según tus archivos
     int cantidad_threads = 4; // Por defecto, 4 threads
 
     pid_t pid = getpid();
     cout << "\nPrograma contador de palabras" << endl;
     cout << "PID: " << pid << endl;
-    
+
     do { 
-        cout << "Para procesar presione 1";
+        cout << "Para procesar presione 1: ";
         cin >> opcion3;
 
         switch (opcion3) {
             case 1: {
                 cout << "Procesando con " << cantidad_threads << " threads..." << endl;
-                if (procesarConThreads(extension, pathIn, pathOut, cantidad_threads)==1)
-                    cout<< "Conteo hecho con éxito"<<endl;
+                procesarConThreads(pathIn, pathOut, extension, cantidad_threads);
+                cout << "Conteo hecho con éxito" << endl;
                 break;
             }
             default: {
@@ -174,6 +165,4 @@ int main() {
     } while (opcion3 != 1);
     
     return 0;
-     
-
 }
