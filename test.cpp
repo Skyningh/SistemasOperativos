@@ -11,7 +11,7 @@
 using namespace std;
 
 int main(){
-    string mapa_archivos = "/home/rudy/2024/SO/SistemasOperativos/mapa.txt";
+    string mapa_archivos = "/home/rudy/2024/SO/SistemasOperativos/complementos/mapa.txt";
     string libros = "/home/rudy/2024/SO/SistemasOperativos/libros";
     int id = 0;
     ofstream mapa(mapa_archivos);
