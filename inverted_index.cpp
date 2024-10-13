@@ -22,15 +22,22 @@ void procesarArchivo(int id, string archivo){
         cerr << "No se pudo abrir el archivo: " << archivo << endl;
         return;
     }
-    string palabra;
-    int cantidad;
-    while(Input >> palabra >> cantidad){
+    string linea;
+    while(getline(Input, linea)){
+        string palabra;
+        int cantidad;
+        stringstream ss(linea);
+        getline(ss, palabra, ';');
+        ss >> cantidad;
+
+        palabra.erase(remove_if(palabra.begin(),palabra.end(), ::isspace), palabra.end());
         if(indice_inv.find(palabra) != indice_inv.end()){
             indice_inv[palabra] += ";(" + to_string(id) + "," + to_string(cantidad) + ")";
         }
         else{
             indice_inv[palabra] = "(" + to_string(id) + "," + to_string(cantidad) + ")";
         }
+
     }
     Input.close();
 }
@@ -58,7 +65,7 @@ void creariIndex(string iIndex, string pathOut){
 }
 
 int main(){
-    string pathOut = "/home/rudy/2024/SO/SistemasOperativos/complementos";
+    string pathOut = "/home/rudy/2024/SO/SistemasOperativos/prueba";
     string iIndex = "/home/rudy/2024/SO/SistemasOperativos/complementos/indiceinv.txt";
 
     if(pathOut.empty() || iIndex.empty()){
@@ -66,7 +73,7 @@ int main(){
         return EXIT_FAILURE;
     }
 
-    creariIndex(pathOut, iIndex);
+    creariIndex(iIndex, pathOut);
 
     return 0;
 }
