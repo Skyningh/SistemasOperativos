@@ -1,4 +1,3 @@
-a ; 4994
 aada ; 1
 aadamos ; 1
 aadan ; 1
@@ -407,7 +406,6 @@ actuaban ; 2
 actuacin ; 3
 actual ; 10
 actuales ; 5
-actualmente ; 5
 actuando ; 1
 actuar ; 5
 actuase ; 1
@@ -462,7 +460,6 @@ adelantando ; 1
 adelantara ; 1
 adelantarles ; 1
 adelantarse ; 1
-adelante ; 59
 adelantndome ; 1
 adelanto ; 1
 adelgaz ; 1
@@ -819,7 +816,6 @@ ahogarle ; 1
 ahogarse ; 2
 ahogo ; 1
 ahoguen ; 2
-ahora ; 545
 ahorcado ; 1
 ahorcar ; 1
 ahorquen ; 1
@@ -853,7 +849,6 @@ ajusta ; 1
 ajustaba ; 1
 ajustado ; 1
 ajustar ; 1
-al ; 1560
 ala ; 11
 alabad ; 1
 alabama ; 6
@@ -987,15 +982,10 @@ alfredo ; 1
 alga ; 1
 algas ; 4
 algn ; 168
-algo ; 183
 algodn ; 3
 algosa ; 1
 algoso ; 1
 alguien ; 24
-alguna ; 140
-algunas ; 47
-alguno ; 13
-algunos ; 127
 aliado ; 1
 aliados ; 3
 alianza ; 2
@@ -1076,7 +1066,6 @@ alquilarle ; 1
 alquitranada ; 2
 alquitranados ; 1
 alquitrn ; 3
-alrededor ; 89
 alrededores ; 1
 alta ; 40
 altamar ; 2
@@ -1193,7 +1182,6 @@ ambicioso ; 1
 ambigua ; 2
 ambiguo ; 1
 ambivalencia ; 1
-ambos ; 40
 ambulante ; 3
 ambulantes ; 1
 ame ; 1
@@ -1436,7 +1424,6 @@ ansiosos ; 2
 antagnicas ; 1
 antao ; 19
 antdoto ; 1
-ante ; 175
 antecedentes ; 1
 antecesores ; 3
 antecrnicas ; 1
@@ -1447,11 +1434,9 @@ antenas ; 2
 antepasada ; 1
 antepasados ; 2
 anteponemos ; 1
-anterior ; 29
 anteriores ; 11
 anterioridad ; 1
 anteriormente ; 1
-antes ; 228
 antialcohlica ; 1
 anticipacin ; 3
 anticipada ; 1
@@ -1555,7 +1540,6 @@ apela ; 1
 apelacin ; 1
 apelativo ; 1
 apellido ; 1
-apenas ; 44
 apergaminada ; 1
 apertura ; 2
 apeteciera ; 1
@@ -1711,12 +1695,8 @@ apuro ; 1
 apuros ; 3
 aqu ; 244
 aqucuidado ; 1
-aquel ; 117
 aquella ; 53
-aquellas ; 20
 aquello ; 6
-aquellos ; 38
-aqui ; 1
 aquiescencia ; 1
 aquiles ; 1
 aqul ; 6
@@ -1920,7 +1900,6 @@ arriar ; 21
 arriarla ; 1
 arriaron ; 3
 arrib ; 1
-arriba ; 84
 arribados ; 1
 arriendan ; 1
 arriesgadamente ; 1
@@ -2356,7 +2335,6 @@ aumentar ; 6
 aumentaron ; 1
 aumento ; 4
 aun ; 79
-aunque ; 378
 aurora ; 1
 auroras ; 1
 ausencia ; 8
@@ -2449,7 +2427,6 @@ avutarda ; 1
 avutardas ; 2
 ay ; 21
 aydame ; 1
-ayer ; 9
 ayu ; 1
 ayud ; 4
 ayuda ; 7
@@ -2544,7 +2521,6 @@ bajel ; 1
 bajen ; 1
 bajes ; 1
 bajndole ; 1
-bajo ; 124
 bajoholandeses ; 1
 bajoholands ; 1
 bajorrelieve ; 1
@@ -2679,7 +2655,6 @@ basilosauro ; 1
 baso ; 1
 basta ; 28
 bastaba ; 1
-bastante ; 72
 bastantes ; 3
 bastar ; 1
 bastaron ; 1
@@ -2812,7 +2787,6 @@ bichero ; 2
 bicheros ; 2
 bicho ; 3
 biela ; 1
-bien ; 249
 bienaventurados ; 1
 bienaventuranza ; 1
 bienes ; 2
@@ -3114,12 +3088,7 @@ bsquedas ; 1
 buceadores ; 1
 bucear ; 1
 buck ; 1
-buen ; 61
-buena ; 85
-buenas ; 12
 buenazo ; 1
-bueno ; 102
-buenos ; 28
 buey ; 12
 bueyes ; 6
 bufa ; 1
@@ -3286,7 +3255,6 @@ cacharros ; 1
 cachorritos ; 1
 cachorro ; 5
 cachorros ; 3
-cada ; 221
 cadas ; 5
 cadena ; 6
 cadenas ; 14
@@ -3661,7 +3629,6 @@ cascarn ; 2
 casco ; 35
 cascos ; 4
 casemos ; 1
-casi ; 242
 casita ; 3
 caso ; 87
 casos ; 42
@@ -3847,7 +3814,6 @@ cepillado ; 1
 cepillo ; 3
 cepo ; 1
 cera ; 3
-cerca ; 86
 cercaba ; 1
 cercado ; 1
 cercados ; 1
@@ -4071,11 +4037,7 @@ cierra ; 3
 cierran ; 2
 cierre ; 1
 cierren ; 1
-cierta ; 35
 ciertamente ; 18
-ciertas ; 24
-cierto ; 61
-ciertos ; 35
 ciervo ; 1
 ciervos ; 1
 cifra ; 2
@@ -4097,7 +4059,6 @@ cincel ; 1
 cinceladas ; 1
 cincelado ; 1
 cincelados ; 1
-cinco ; 42
 cincoava ; 4
 cincuenta ; 35
 cincuentenas ; 1
@@ -4464,7 +4425,6 @@ comis ; 1
 comisuras ; 1
 comn ; 24
 comnmente ; 3
-como ; 1682
 comodidad ; 7
 comodidades ; 2
 comodoro ; 10
@@ -4597,7 +4557,6 @@ comunidad ; 2
 comunidades ; 1
 comunin ; 1
 comunique ; 1
-con ; 2285
 concebible ; 1
 concebibles ; 1
 concebirse ; 1
@@ -4779,7 +4738,6 @@ conocas ; 1
 conoce ; 8
 conocemos ; 2
 conocen ; 4
-conocer ; 7
 conocerse ; 2
 conoces ; 4
 conoci ; 2
@@ -4809,7 +4767,6 @@ consecuencia ; 21
 consecuencias ; 4
 consegu ; 1
 consegua ; 2
-conseguir ; 2
 conseguirlo ; 1
 consejeros ; 1
 consejo ; 6
@@ -4831,7 +4788,6 @@ conservarse ; 1
 conservarte ; 1
 conserve ; 1
 consider ; 7
-considera ; 14
 consideraba ; 8
 consideraban ; 2
 considerable ; 23
@@ -4866,8 +4822,6 @@ considerrsele ; 1
 consienten ; 2
 consiga ; 3
 consigna ; 1
-consigo ; 19
-consiguen ; 1
 consigui ; 1
 consiguiente ; 22
 consiguientes ; 2
@@ -5020,7 +4974,6 @@ contornendoles ; 1
 contorno ; 3
 contorsin ; 2
 contorsiones ; 2
-contra ; 167
 contraa ; 1
 contrabajo ; 1
 contrabandista ; 1
@@ -5274,7 +5227,6 @@ cortsmente ; 4
 corvetas ; 2
 cos ; 1
 cosa ; 155
-cosas ; 146
 cosecha ; 2
 cosechadores ; 1
 cosechar ; 4
@@ -5374,7 +5326,6 @@ creis ; 8
 crema ; 1
 cremosa ; 1
 cremoso ; 4
-creo ; 36
 crepit ; 1
 crepsculo ; 4
 crepsculos ; 1
@@ -5503,19 +5454,14 @@ cuajada ; 2
 cuajadas ; 1
 cuajados ; 1
 cuajndose ; 1
-cual ; 82
-cuales ; 33
 cualesquiera ; 4
 cualidad ; 3
 cualidades ; 5
 cualificado ; 2
-cualquier ; 128
 cualquiera ; 26
 cuan ; 1
-cuando ; 590
 cuanta ; 1
 cuantas ; 3
-cuanto ; 128
 cuantos ; 7
 cuaquerismo ; 1
 cuarenta ; 35
@@ -5529,7 +5475,6 @@ cuartito ; 3
 cuarto ; 49
 cuartos ; 6
 cuas ; 2
-cuatro ; 72
 cuba ; 3
 cubierta ; 190
 cubiertaaaa ; 1
@@ -5561,7 +5506,6 @@ cuelgue ; 1
 cuello ; 21
 cuellos ; 1
 cuencos ; 1
-cuenta ; 49
 cuentan ; 2
 cuentas ; 1
 cuenten ; 1
@@ -5694,7 +5638,6 @@ cxxxiii ; 1
 cxxxiv ; 1
 cxxxv ; 1
 d ; 19
-da ; 192
 daa ; 2
 daada ; 1
 daar ; 2
@@ -5708,7 +5651,6 @@ dadle ; 8
 dadles ; 2
 dadme ; 3
 dadnos ; 1
-dado ; 75
 dador ; 1
 daggoo ; 36
 dagn ; 1
@@ -5723,7 +5665,6 @@ damiselas ; 1
 damocles ; 1
 damos ; 3
 dampier ; 1
-dan ; 23
 dando ; 46
 daneses ; 3
 daniel ; 2
@@ -5737,7 +5678,6 @@ danzaban ; 2
 danzando ; 1
 danzarinas ; 1
 dao ; 12
-dar ; 84
 dara ; 4
 daran ; 2
 dardanelos ; 2
@@ -5770,17 +5710,14 @@ dcil ; 1
 dcilmente ; 1
 dcima ; 4
 ddmelo ; 2
-de ; 12021
 deau ; 1
 deb ; 1
 deba ; 62
 debajo ; 56
 debamos ; 1
 deban ; 14
-debe ; 73
 debell ; 1
 debemos ; 3
-deben ; 23
 deber ; 13
 debera ; 16
 deberamos ; 5
@@ -5791,7 +5728,6 @@ debes ; 7
 debi ; 9
 debida ; 3
 debidamente ; 7
-debido ; 37
 debieron ; 1
 debilidad ; 3
 debilidades ; 1
@@ -5836,7 +5772,6 @@ decimonono ; 1
 decimoquinto ; 1
 decimos ; 1
 decimosptimo ; 1
-decir ; 175
 decirle ; 7
 decirlo ; 19
 decirme ; 4
@@ -5972,7 +5907,6 @@ dejndome ; 1
 dejndoos ; 1
 dejo ; 5
 dejramos ; 1
-del ; 1974
 delantal ; 1
 delante ; 100
 delantera ; 9
@@ -6071,7 +6005,6 @@ densos ; 2
 dentado ; 1
 dentados ; 1
 dentistas ; 1
-dentro ; 83
 denuncia ; 1
 denuncias ; 1
 departamento ; 2
@@ -6305,7 +6238,6 @@ descuid ; 1
 descuidadamente ; 2
 descuidado ; 5
 descuido ; 3
-desde ; 323
 desdea ; 2
 desdeado ; 1
 desdean ; 1
@@ -6816,12 +6748,9 @@ dibujo ; 2
 dibujos ; 6
 diccionario ; 8
 diccionarios ; 2
-dice ; 69
-dicen ; 27
 dices ; 13
 dicha ; 14
 dichas ; 3
-dicho ; 62
 dichos ; 1
 diciembre ; 4
 diciendo ; 26
@@ -6840,7 +6769,6 @@ dientes ; 46
 diera ; 8
 dierais ; 1
 dieran ; 4
-dieron ; 11
 diese ; 1
 diestra ; 1
 diestramente ; 2
@@ -6854,8 +6782,6 @@ difcilmente ; 8
 diferencia ; 21
 diferenciaba ; 1
 diferencias ; 1
-diferente ; 13
-diferentes ; 12
 dificultad ; 3
 dificultades ; 3
 difiere ; 2
@@ -6891,11 +6817,9 @@ digresin ; 1
 dije ; 76
 dijera ; 4
 dijeran ; 1
-dijeron ; 7
 dijes ; 2
 dijimos ; 1
 dijiste ; 2
-dijo ; 189
 dilatadas ; 1
 dilatando ; 1
 dile ; 4
@@ -6916,7 +6840,6 @@ dimos ; 1
 dinero ; 19
 dineros ; 1
 dinos ; 1
-dio ; 49
 dios ; 165
 diosa ; 2
 diosecillo ; 2
@@ -7238,7 +7161,6 @@ donada ; 1
 doncella ; 2
 doncellas ; 1
 doncellil ; 1
-donde ; 168
 dondequiera ; 3
 dones ; 1
 dorada ; 4
@@ -7259,7 +7181,6 @@ dormitando ; 1
 dormitar ; 1
 dorsal ; 4
 dorso ; 1
-dos ; 315
 doscientas ; 4
 doscientos ; 5
 doscientosava ; 1
@@ -7333,7 +7254,6 @@ duracin ; 4
 duradero ; 2
 duramente ; 3
 durand ; 1
-durante ; 137
 durar ; 2
 duraran ; 1
 durarn ; 1
@@ -7347,7 +7267,6 @@ durmieran ; 1
 duro ; 27
 duros ; 4
 dwolf ; 2
-e ; 222
 ea ; 29
 ebrio ; 1
 ebrneo ; 2
@@ -7445,7 +7364,6 @@ ejecutor ; 1
 ejem ; 5
 ejemplar ; 5
 ejemplares ; 6
-ejemplo ; 23
 ejemplos ; 16
 ejerce ; 2
 ejercicio ; 3
@@ -7453,7 +7371,6 @@ ejercicios ; 1
 ejes ; 1
 ejrcito ; 2
 ejrcitos ; 4
-el ; 5567
 elaboran ; 1
 elas ; 15
 elasticidad ; 3
@@ -7515,12 +7432,8 @@ eliminar ; 1
 elixir ; 1
 eliza ; 1
 elizabeth ; 1
-ella ; 158
-ellas ; 69
 ellenborough ; 2
 ellery ; 1
-ello ; 81
-ellos ; 201
 elocuente ; 2
 elocuentemente ; 1
 elogio ; 1
@@ -7562,7 +7475,6 @@ embarcarle ; 1
 embarcarme ; 3
 embarcaron ; 1
 embarcarse ; 5
-embargo ; 207
 embarque ; 1
 embarrancados ; 1
 embarulladas ; 1
@@ -7668,8 +7580,6 @@ empleaba ; 1
 empleadas ; 1
 empleados ; 2
 empleando ; 1
-emplear ; 2
-empleo ; 1
 emplese ; 1
 emplomados ; 1
 emplumado ; 1
@@ -7703,7 +7613,6 @@ empuje ; 4
 empujis ; 1
 empujn ; 8
 emulando ; 1
-en ; 6104
 enamorados ; 1
 enanos ; 1
 encabeza ; 1
@@ -7781,7 +7690,6 @@ encerrarse ; 1
 enciende ; 1
 encierra ; 1
 encierro ; 2
-encima ; 94
 encina ; 2
 enclenque ; 1
 encoger ; 1
@@ -7829,7 +7737,6 @@ encrucijadas ; 2
 encuadernador ; 2
 encuadernados ; 1
 encubrir ; 1
-encuentra ; 39
 encuentran ; 20
 encuentras ; 2
 encuentre ; 8
@@ -8056,7 +7963,6 @@ entiendo ; 12
 entierres ; 1
 entierro ; 2
 entonando ; 1
-entonces ; 467
 entorpecida ; 1
 entorpecidos ; 1
 entr ; 19
@@ -8079,7 +7985,6 @@ entrara ; 3
 entraran ; 1
 entraron ; 1
 entrase ; 1
-entre ; 330
 entreabierta ; 2
 entreabierto ; 1
 entrecejo ; 1
@@ -8220,11 +8125,7 @@ equivocaciones ; 1
 equivocada ; 2
 equivocado ; 2
 equivoco ; 3
-era ; 471
-eran ; 77
-eras ; 3
 eremticos ; 1
-eres ; 27
 ergo ; 2
 ergua ; 4
 erguan ; 3
@@ -8256,9 +8157,6 @@ erudicin ; 2
 eruditas ; 1
 erudito ; 2
 erupcin ; 1
-es ; 1399
-esa ; 399
-esas ; 211
 esbelta ; 2
 esbozar ; 1
 esbozos ; 2
@@ -8418,7 +8316,6 @@ escupo ; 1
 escurre ; 1
 escurrira ; 1
 escurrirme ; 1
-ese ; 583
 esencia ; 5
 esencial ; 1
 esenciales ; 1
@@ -8448,8 +8345,6 @@ esgrimen ; 1
 esgrimidor ; 2
 eslabn ; 1
 eslabones ; 4
-eso ; 330
-esos ; 233
 espaa ; 5
 espaciados ; 1
 espaciaron ; 1
@@ -8583,11 +8478,6 @@ esquivarla ; 1
 essex ; 3
 esstados ; 1
 est ; 362
-esta ; 280
-estaba ; 246
-estabais ; 3
-estaban ; 103
-estabas ; 3
 establece ; 3
 establecen ; 1
 establecida ; 3
@@ -8599,14 +8489,10 @@ establo ; 1
 estacha ; 72
 estachas ; 11
 estaciones ; 2
-estad ; 2
 estadios ; 3
-estado ; 52
-estados ; 7
 estadsticamente ; 1
 estadsticas ; 2
 estafar ; 1
-estais ; 1
 estall ; 1
 estalla ; 2
 estallaban ; 1
@@ -8619,16 +8505,13 @@ estallen ; 1
 estallido ; 1
 estambre ; 1
 estamea ; 1
-estamos ; 19
 estampas ; 1
 estampidas ; 1
 estampido ; 3
 estandarte ; 2
-estando ; 15
 estanque ; 3
 estantera ; 5
 estantes ; 1
-estar ; 92
 estara ; 11
 estaramos ; 1
 estaran ; 3
@@ -8636,18 +8519,15 @@ estaris ; 1
 estarle ; 2
 estarn ; 2
 estarse ; 2
-estas ; 72
 estatua ; 3
 estatuas ; 1
 estatuida ; 1
 estatura ; 2
 estbamos ; 16
-este ; 457
 esteatita ; 3
 estela ; 32
 estelar ; 1
 estelas ; 6
-estemos ; 3
 estera ; 9
 esterar ; 1
 estereotpicas ; 1
@@ -8686,7 +8566,6 @@ estmago ; 6
 estmagos ; 1
 estmulos ; 1
 estn ; 119
-esto ; 212
 estocadas ; 1
 estoica ; 1
 estoicos ; 1
@@ -8699,8 +8578,6 @@ estorbo ; 2
 estornuda ; 7
 estornudando ; 1
 estornudas ; 1
-estos ; 61
-estoy ; 48
 estpida ; 2
 estpidas ; 2
 estpido ; 4
@@ -8787,13 +8664,7 @@ estupendo ; 5
 estupendos ; 1
 estupor ; 1
 esturin ; 3
-estuve ; 3
-estuviera ; 27
-estuvieran ; 9
-estuvieron ; 8
-estuvimos ; 2
 estuviramos ; 1
-estuvo ; 23
 et ; 2
 etapa ; 1
 etc ; 3
@@ -8844,7 +8715,6 @@ evocar ; 1
 evocarlas ; 1
 evoco ; 1
 evoluciones ; 1
-ex ; 5
 exacta ; 11
 exactamente ; 47
 exactas ; 2
@@ -8955,8 +8825,6 @@ exiliadas ; 1
 exiliando ; 1
 exilio ; 1
 exista ; 2
-existe ; 3
-existen ; 1
 existencia ; 5
 existencias ; 1
 existente ; 1
@@ -9409,7 +9277,6 @@ filsticas ; 3
 filtra ; 1
 filtrado ; 1
 filtro ; 1
-fin ; 210
 fina ; 3
 final ; 44
 finales ; 2
@@ -9697,16 +9564,11 @@ fsicamente ; 1
 fsico ; 2
 fsiles ; 6
 ftida ; 1
-fue ; 217
 fuego ; 71
 fuegos ; 5
 fuelle ; 2
 fuente ; 14
 fuentes ; 10
-fuera ; 176
-fueran ; 27
-fueras ; 3
-fueron ; 33
 fuerte ; 46
 fuertemente ; 5
 fuertes ; 6
@@ -9714,7 +9576,6 @@ fuerza ; 78
 fuerzan ; 1
 fuerzas ; 7
 fuerzo ; 1
-fuese ; 10
 fuga ; 2
 fugacidad ; 1
 fugaz ; 3
@@ -9723,10 +9584,6 @@ fugitiva ; 2
 fugitivas ; 4
 fugitivo ; 5
 fugitivos ; 1
-fui ; 7
-fuimos ; 7
-fuiste ; 1
-fuisteis ; 1
 fulgor ; 7
 fulgores ; 2
 fuliginosos ; 1
@@ -10097,12 +9954,10 @@ gradualmente ; 2
 grampus ; 1
 gramtica ; 1
 gramticas ; 2
-gran ; 308
 granada ; 1
 granadero ; 3
 grande ; 37
 grandemente ; 3
-grandes ; 95
 grandeza ; 11
 grandilocuentes ; 2
 grandiosa ; 7
@@ -10280,13 +10135,11 @@ gustos ; 1
 gutapercha ; 1
 guturales ; 2
 h ; 6
-ha ; 373
 haarlem ; 1
 haba ; 557
 habamos ; 9
 haban ; 117
 habeas ; 1
-haber ; 124
 haberla ; 1
 haberle ; 5
 haberlo ; 6
@@ -10295,8 +10148,6 @@ habernos ; 1
 haberos ; 1
 haberse ; 17
 haberte ; 1
-habido ; 7
-habiendo ; 9
 habilidad ; 12
 habilidades ; 1
 habindole ; 1
@@ -10337,7 +10188,6 @@ habra ; 58
 habrais ; 11
 habramos ; 1
 habran ; 12
-habremos ; 1
 habris ; 5
 habrmelas ; 2
 habrn ; 3
@@ -10346,26 +10196,18 @@ habrs ; 2
 habrselas ; 2
 haca ; 70
 hacan ; 13
-hace ; 152
 haced ; 3
 hacedle ; 1
 hacedlo ; 1
 hacedme ; 2
-hacemos ; 4
-hacen ; 32
-hacer ; 95
 hacerla ; 1
 hacerle ; 7
-hacerlo ; 21
 hacerlos ; 2
 hacerme ; 4
 hacernos ; 3
 haceros ; 1
 hacerse ; 10
-haces ; 12
 hacha ; 22
-hacia ; 255
-haciendo ; 46
 hacindola ; 1
 hacindolas ; 1
 hacindole ; 2
@@ -10385,7 +10227,6 @@ hagan ; 3
 hagas ; 2
 hagis ; 3
 hagmosle ; 1
-hago ; 17
 hake ; 1
 hakluy ; 1
 hal ; 1
@@ -10418,7 +10259,6 @@ hambrientos ; 1
 hamlet ; 1
 hampshire ; 3
 hampton ; 1
-han ; 145
 hangho ; 1
 hannover ; 1
 har ; 22
@@ -10445,15 +10285,9 @@ hartis ; 1
 harto ; 1
 hartz ; 1
 harvard ; 2
-has ; 36
-hasta ; 363
 hawai ; 1
 hawaiano ; 1
 hawthorne ; 2
-hay ; 295
-haya ; 35
-hayan ; 14
-hayas ; 1
 hayis ; 2
 haz ; 9
 hazaa ; 4
@@ -10466,7 +10300,6 @@ hbilmente ; 3
 hbito ; 2
 hbitos ; 1
 hblales ; 1
-he ; 200
 head ; 1
 heal ; 1
 hebilla ; 3
@@ -10485,7 +10318,6 @@ hechizados ; 1
 hechizarnos ; 1
 hechizo ; 8
 hechizos ; 1
-hecho ; 149
 hechos ; 16
 hecla ; 1
 hectrea ; 1
@@ -10505,7 +10337,6 @@ hembra ; 2
 hembras ; 4
 hemipljico ; 1
 hemisferio ; 2
-hemos ; 31
 hendido ; 1
 hendidura ; 4
 hendiduras ; 2
@@ -10576,7 +10407,6 @@ hgados ; 2
 hice ; 9
 hiciera ; 21
 hicieran ; 7
-hicieron ; 7
 hicimos ; 2
 hiciste ; 3
 hickory ; 2
@@ -10655,7 +10485,6 @@ histrica ; 2
 histrico ; 4
 histricos ; 3
 hivahiva ; 1
-hizo ; 73
 hlito ; 1
 hlitos ; 1
 hmeda ; 2
@@ -10778,7 +10607,6 @@ hostilidades ; 1
 hotel ; 1
 hoteles ; 1
 howdah ; 1
-hoy ; 26
 hoz ; 1
 hrcules ; 6
 hroe ; 7
@@ -10787,15 +10615,7 @@ hsar ; 1
 hua ; 3
 huan ; 1
 huata ; 2
-hubiera ; 89
-hubierais ; 6
-hubieran ; 24
-hubieras ; 1
-hubieron ; 1
-hubiese ; 1
-hubieseis ; 1
 hubiramos ; 1
-hubo ; 19
 hudson ; 2
 hueca ; 5
 hueco ; 20
@@ -10951,7 +10771,6 @@ ignorante ; 10
 ignorantemente ; 2
 ignorantes ; 2
 ignorar ; 1
-igual ; 100
 iguala ; 1
 igualada ; 1
 igualarlo ; 1
@@ -11217,7 +11036,6 @@ incluida ; 1
 incluido ; 7
 incluidos ; 5
 inclumes ; 1
-incluso ; 46
 incluye ; 1
 incluyen ; 4
 incluyendo ; 7
@@ -11732,16 +11550,13 @@ intensificador ; 1
 intenso ; 6
 intensos ; 1
 intent ; 4
-intenta ; 5
 intentaba ; 4
 intentado ; 3
 intentando ; 2
-intentar ; 11
 intentara ; 1
 intentarlo ; 3
 intentaron ; 1
 intente ; 1
-intento ; 7
 intentos ; 6
 intercaladas ; 1
 intercambiadas ; 1
@@ -11917,7 +11732,6 @@ involuntario ; 3
 invoque ; 1
 invulnerable ; 2
 inyectados ; 3
-ir ; 60
 ira ; 9
 iracunda ; 1
 iracundo ; 1
@@ -12176,7 +11990,6 @@ juntar ; 1
 juntaris ; 2
 juntas ; 16
 juntemos ; 1
-junto ; 87
 juntos ; 16
 juntura ; 2
 junturas ; 4
@@ -12246,7 +12059,6 @@ krusenstern ; 1
 krusensterns ; 1
 kul ; 1
 l ; 591
-la ; 6860
 laador ; 1
 laadores ; 1
 laar ; 1
@@ -12280,7 +12092,6 @@ ladeando ; 1
 ladeos ; 1
 ladera ; 1
 laderas ; 1
-lado ; 195
 lados ; 31
 ladrillo ; 2
 ladrillos ; 3
@@ -12362,9 +12173,7 @@ largaran ; 1
 largaron ; 1
 largarse ; 1
 largas ; 42
-largo ; 162
 largos ; 23
-las ; 2076
 lascar ; 1
 lastimero ; 1
 lastimoso ; 1
@@ -12409,7 +12218,6 @@ lcito ; 1
 lctea ; 6
 lcteas ; 1
 lcteo ; 3
-le ; 690
 lea ; 6
 leadores ; 1
 leales ; 1
@@ -12475,7 +12283,6 @@ leopardo ; 1
 leopardos ; 1
 leosa ; 1
 leproso ; 1
-les ; 138
 lesson ; 1
 letales ; 1
 letargo ; 1
@@ -12730,7 +12537,6 @@ llenndolas ; 1
 lleno ; 37
 llenos ; 13
 llev ; 10
-lleva ; 44
 llevaba ; 39
 llevaban ; 11
 llevada ; 2
@@ -12740,7 +12546,6 @@ llevados ; 4
 llevamos ; 3
 llevan ; 19
 llevando ; 14
-llevar ; 29
 llevara ; 5
 llevaran ; 4
 llevarla ; 1
@@ -12786,7 +12591,6 @@ lmpido ; 1
 lnea ; 24
 lneas ; 18
 lnguida ; 1
-lo ; 1111
 lobo ; 2
 lobos ; 5
 lobunos ; 1
@@ -12825,7 +12629,6 @@ longitudes ; 2
 lonjas ; 1
 lontananza ; 4
 lord ; 8
-los ; 2860
 losa ; 1
 losetas ; 1
 lote ; 1
@@ -12865,8 +12668,6 @@ lucifer ; 1
 luciferes ; 1
 lucirnagas ; 1
 ludano ; 1
-luego ; 245
-lugar ; 102
 lugares ; 13
 lugarteniente ; 1
 luis ; 3
@@ -13107,7 +12908,6 @@ manejado ; 1
 manejando ; 1
 manejar ; 4
 manejo ; 3
-manera ; 27
 maneras ; 8
 manga ; 1
 mangas ; 4
@@ -13365,7 +13165,6 @@ maxilar ; 1
 mayas ; 1
 mayhew ; 8
 mayo ; 6
-mayor ; 145
 mayora ; 8
 mayordomo ; 19
 mayores ; 20
@@ -13382,7 +13181,6 @@ mcculloch ; 1
 mdico ; 6
 mdicos ; 5
 mdula ; 5
-me ; 690
 meca ; 10
 mecan ; 2
 mece ; 8
@@ -13412,7 +13210,6 @@ mediana ; 1
 medianamente ; 1
 mediano ; 2
 medianoche ; 20
-mediante ; 7
 medias ; 8
 medicamento ; 1
 medicar ; 1
@@ -13445,7 +13242,6 @@ mefistoflica ; 1
 meique ; 2
 mejilla ; 2
 mejillas ; 13
-mejor ; 118
 mejorado ; 1
 mejorando ; 1
 mejorar ; 2
@@ -13507,7 +13303,6 @@ menguara ; 1
 menguaran ; 1
 menor ; 22
 menores ; 4
-menos ; 150
 menospreciar ; 1
 mensajes ; 1
 mente ; 20
@@ -13626,7 +13421,6 @@ mezquinos ; 1
 mezquita ; 1
 mgica ; 4
 mgico ; 4
-mi ; 375
 miasmas ; 1
 michigan ; 2
 microscpica ; 2
@@ -13638,7 +13432,6 @@ miel ; 4
 miembro ; 9
 miembros ; 10
 mientes ; 2
-mientras ; 344
 mieses ; 1
 migaja ; 1
 miguel ; 4
@@ -13711,7 +13504,6 @@ mirndonos ; 1
 mirndose ; 1
 miro ; 6
 mirra ; 1
-mis ; 87
 misantrpica ; 1
 misantrpicos ; 1
 miscelneos ; 1
@@ -13726,10 +13518,6 @@ misin ; 2
 misionero ; 4
 misioneros ; 1
 misiva ; 1
-misma ; 94
-mismas ; 16
-mismo ; 339
-mismos ; 44
 mismsima ; 5
 mismsimas ; 2
 mismsimo ; 12
@@ -13785,7 +13573,6 @@ modificadas ; 1
 modificado ; 3
 modificando ; 1
 modista ; 1
-modo ; 425
 modos ; 11
 mohadillas ; 1
 mohawks ; 1
@@ -13829,7 +13616,6 @@ molucas ; 2
 momentnea ; 2
 momentneamente ; 1
 momentneo ; 2
-momento ; 257
 momentos ; 29
 momias ; 2
 monadnock ; 1
@@ -14022,16 +13808,12 @@ mtete ; 1
 mtodo ; 5
 mtrica ; 1
 mu ; 1
-mucha ; 46
 muchacha ; 5
 muchachas ; 6
 muchachito ; 5
 muchacho ; 54
 muchachos ; 63
-muchas ; 59
 muchedumbre ; 1
-mucho ; 213
-muchos ; 80
 muda ; 1
 mudamente ; 1
 mudan ; 1
@@ -14137,7 +13919,6 @@ mutuamente ; 5
 mutuas ; 1
 mutuo ; 2
 muvete ; 3
-muy ; 367
 mvil ; 6
 mviles ; 2
 mxico ; 3
@@ -14158,7 +13939,6 @@ nacin ; 5
 nacional ; 2
 naciones ; 11
 nad ; 2
-nada ; 177
 nadaba ; 7
 nadaban ; 4
 nadado ; 3
@@ -14170,7 +13950,6 @@ nadar ; 14
 nadarn ; 1
 nadaron ; 1
 nade ; 1
-nadie ; 34
 nado ; 4
 naipes ; 1
 nana ; 1
@@ -14332,7 +14111,6 @@ ngel ; 7
 ngeles ; 9
 nger ; 1
 ngulo ; 8
-ni ; 264
 nia ; 2
 niagara ; 1
 nias ; 1
@@ -14361,8 +14139,6 @@ nilo ; 1
 nimo ; 19
 nimos ; 5
 ningn ; 87
-ninguna ; 56
-ninguno ; 18
 nio ; 20
 nios ; 17
 niphon ; 1
@@ -14372,7 +14148,6 @@ niveles ; 3
 nmero ; 22
 nmeros ; 5
 nnive ; 6
-no ; 2395
 noah ; 1
 nobilsima ; 1
 noble ; 36
@@ -14412,8 +14187,6 @@ norteamericana ; 1
 norteamrica ; 1
 norteos ; 1
 noruego ; 3
-nos ; 178
-nosotros ; 83
 nostrilwhale ; 1
 not ; 3
 nota ; 9
@@ -14458,23 +14231,14 @@ nudos ; 6
 nudosa ; 1
 nudoso ; 2
 nudosos ; 2
-nuestra ; 69
-nuestras ; 18
-nuestro ; 66
-nuestros ; 48
-nueva ; 31
 nuevamente ; 1
-nuevas ; 12
 nueve ; 7
-nuevo ; 23
-nuevos ; 8
 nuez ; 2
 nufraga ; 1
 nufrago ; 1
 numerosa ; 1
 numerosas ; 8
 numerosos ; 7
-nunca ; 115
 nupcial ; 2
 nupciales ; 1
 nutica ; 1
@@ -14488,7 +14252,6 @@ nutritivas ; 1
 nvea ; 6
 nveas ; 4
 nveo ; 7
-o ; 679
 oa ; 11
 oahu ; 1
 oakes ; 1
@@ -14631,7 +14394,6 @@ ocenico ; 2
 ocenicos ; 1
 ocenida ; 1
 ochenta ; 4
-ocho ; 24
 ochocientos ; 1
 ocio ; 5
 ociosa ; 3
@@ -14915,7 +14677,6 @@ ortodoxos ; 1
 oruga ; 1
 orz ; 1
 orza ; 4
-os ; 127
 osada ; 4
 osadas ; 1
 osado ; 4
@@ -14965,10 +14726,6 @@ otoo ; 1
 otorga ; 3
 otorgado ; 2
 otorgadoras ; 1
-otra ; 247
-otras ; 79
-otro ; 283
-otros ; 115
 ovalada ; 1
 oveja ; 1
 ovejas ; 2
@@ -15112,7 +14869,6 @@ papeles ; 11
 paquebote ; 1
 paquete ; 1
 par ; 31
-para ; 1303
 paraba ; 1
 paracelso ; 2
 parada ; 1
@@ -15143,7 +14899,6 @@ pardo ; 2
 pardos ; 1
 pareca ; 196
 parecan ; 55
-parece ; 145
 parecen ; 23
 parecer ; 43
 parecera ; 13
@@ -15195,7 +14950,6 @@ parta ; 2
 partan ; 1
 partcula ; 3
 partculas ; 1
-parte ; 243
 parten ; 2
 partes ; 59
 parti ; 4
@@ -15213,7 +14967,6 @@ partiendo ; 1
 partiera ; 1
 partieron ; 3
 partimos ; 1
-partir ; 6
 partirla ; 1
 partirse ; 2
 partirte ; 1
@@ -15226,10 +14979,8 @@ pasa ; 38
 pasaba ; 10
 pasaban ; 9
 pasad ; 1
-pasada ; 8
 pasadas ; 3
 pasadizo ; 1
-pasado ; 25
 pasador ; 4
 pasadores ; 2
 pasados ; 6
@@ -15614,7 +15365,6 @@ pernera ; 1
 pernicioso ; 1
 perno ; 2
 pernos ; 4
-pero ; 1312
 perodo ; 15
 perodos ; 5
 perpendicular ; 1
@@ -15715,7 +15465,6 @@ pesado ; 18
 pesados ; 8
 pesadumbre ; 1
 pesan ; 1
-pesar ; 39
 pesas ; 1
 pesca ; 105
 pescada ; 1
@@ -15999,18 +15748,12 @@ poblada ; 1
 poblados ; 1
 pobre ; 90
 pobres ; 16
-poca ; 24
-pocas ; 41
 pocin ; 1
-poco ; 188
-pocos ; 55
 poda ; 86
 podais ; 1
 podamos ; 4
 podan ; 26
 podas ; 1
-podemos ; 15
-poder ; 35
 poderes ; 3
 poderlo ; 4
 podero ; 2
@@ -16082,7 +15825,6 @@ ponedlo ; 1
 ponemos ; 1
 ponen ; 8
 poneos ; 3
-poner ; 43
 ponerla ; 1
 ponerle ; 3
 ponerlo ; 3
@@ -16121,12 +15863,10 @@ popularizar ; 1
 popularmente ; 4
 populosas ; 2
 populosidad ; 1
-por ; 2494
 porcin ; 6
 porciones ; 4
 poro ; 2
 poros ; 1
-porque ; 125
 porquera ; 1
 porrazo ; 1
 porrazos ; 1
@@ -16176,7 +15916,6 @@ poseyendo ; 1
 poseyndole ; 1
 posibilidad ; 2
 posibilidades ; 2
-posible ; 45
 posiblemente ; 4
 posibles ; 2
 posicin ; 19
@@ -16473,11 +16212,7 @@ prgala ; 1
 prima ; 1
 primavera ; 6
 primaverales ; 2
-primer ; 93
-primera ; 78
 primeras ; 3
-primero ; 56
-primeros ; 8
 primigenios ; 1
 primitiva ; 1
 primitivas ; 1
@@ -16488,7 +16223,6 @@ primogenituras ; 1
 princesa ; 1
 principal ; 14
 principales ; 11
-principalmente ; 12
 principesca ; 1
 principescas ; 1
 principiante ; 1
@@ -16653,9 +16387,7 @@ propensas ; 2
 propensidad ; 1
 propensin ; 2
 propenso ; 2
-propia ; 77
 propiamente ; 18
-propias ; 18
 propicia ; 1
 propicias ; 2
 propicio ; 11
@@ -16665,8 +16397,6 @@ propiedades ; 1
 propietario ; 6
 propietarios ; 19
 propinados ; 1
-propio ; 76
-propios ; 27
 propntide ; 1
 propona ; 4
 proponen ; 2
@@ -16801,18 +16531,13 @@ pudieron ; 5
 pudiese ; 1
 pudimos ; 3
 pudiramos ; 1
-pudo ; 10
 pudren ; 1
 pudrir ; 1
 pueblan ; 2
 pueblo ; 3
-pueda ; 34
 puedan ; 11
 puedas ; 5
-puede ; 218
-pueden ; 41
 puedes ; 26
-puedo ; 38
 puente ; 3
 puentes ; 3
 puerco ; 1
@@ -16822,7 +16547,6 @@ puertas ; 4
 puertecillas ; 1
 puerto ; 53
 puertos ; 16
-pues ; 367
 puesta ; 7
 puestas ; 5
 puesto ; 51
@@ -16910,7 +16634,6 @@ qu ; 568
 quahogs ; 1
 qudate ; 6
 qudatela ; 1
-que ; 6145
 quebec ; 2
 quebrada ; 1
 quebradas ; 1
@@ -16964,7 +16687,6 @@ queramos ; 1
 queran ; 2
 queras ; 2
 querellas ; 2
-queremos ; 4
 querer ; 6
 queridas ; 1
 querido ; 9
@@ -16984,13 +16706,10 @@ quicio ; 2
 quid ; 1
 quiebra ; 5
 quiebros ; 2
-quien ; 70
-quienes ; 11
 quienquiera ; 10
 quiera ; 24
 quieran ; 2
 quieras ; 4
-quiere ; 42
 quieren ; 1
 quieres ; 12
 quiero ; 37
@@ -17173,11 +16892,9 @@ realiza ; 2
 realizacin ; 1
 realizaciones ; 2
 realizada ; 1
-realizado ; 2
 realizador ; 2
 realizan ; 1
 realizando ; 2
-realizar ; 2
 realizara ; 1
 realizaron ; 1
 realizarse ; 1
@@ -17829,7 +17546,6 @@ respaldo ; 2
 respectivamente ; 3
 respectivas ; 3
 respectivos ; 1
-respecto ; 41
 respetable ; 2
 respetables ; 1
 respetado ; 1
@@ -18331,13 +18047,8 @@ saba ; 32
 sabamos ; 1
 saban ; 2
 sabanas ; 1
-sabe ; 51
-sabemos ; 6
-saben ; 16
-saber ; 45
 saberlo ; 7
 saberse ; 4
-sabes ; 13
 sabia ; 1
 sabias ; 2
 sabida ; 1
@@ -18624,8 +18335,6 @@ schmerenburgh ; 1
 schouten ; 1
 scoresby ; 10
 scorpio ; 1
-se ; 3023
-sea ; 106
 seal ; 50
 seala ; 4
 sealaba ; 3
@@ -18643,9 +18352,6 @@ seale ; 5
 seales ; 19
 sealis ; 1
 sealndola ; 2
-seamos ; 1
-sean ; 19
-seas ; 10
 sebastin ; 13
 sebo ; 3
 sebond ; 1
@@ -18713,8 +18419,6 @@ seguirla ; 1
 seguirle ; 2
 seguirme ; 2
 seguirn ; 1
-segunda ; 12
-segundo ; 46
 segundos ; 3
 segura ; 6
 seguramente ; 6
@@ -18723,7 +18427,6 @@ seguridades ; 2
 seguro ; 36
 seguros ; 9
 segus ; 3
-seis ; 33
 seleccin ; 1
 seleccionando ; 1
 selecta ; 1
@@ -18866,7 +18569,6 @@ sepultura ; 5
 sepulturero ; 2
 sequa ; 3
 seque ; 1
-ser ; 360
 sera ; 63
 seran ; 4
 serena ; 1
@@ -18946,7 +18648,6 @@ shastra ; 2
 sheffield ; 1
 shetland ; 2
 shiva ; 1
-si ; 652
 siam ; 2
 siamesa ; 1
 siameses ; 2
@@ -18954,11 +18655,8 @@ sibbald ; 3
 siberia ; 2
 siberiana ; 1
 siciliano ; 3
-sido ; 95
 siega ; 1
 siembran ; 1
-siempre ; 177
-siendo ; 48
 sienta ; 3
 sientan ; 1
 siente ; 17
@@ -18970,7 +18668,6 @@ sierras ; 1
 siervo ; 1
 siervos ; 1
 siesta ; 2
-siete ; 8
 sieteava ; 5
 siga ; 5
 sigamos ; 1
@@ -18988,12 +18685,10 @@ significativo ; 6
 signo ; 15
 signos ; 17
 sigo ; 5
-sigue ; 52
 siguen ; 13
 sigues ; 3
 sigui ; 28
 siguiendo ; 11
-siguiente ; 37
 siguientes ; 6
 siguiera ; 3
 siguieran ; 3
@@ -19041,7 +18736,6 @@ simultaneidad ; 2
 simultnea ; 1
 simultneamente ; 5
 simultneos ; 1
-sin ; 749
 sincera ; 2
 sinceras ; 1
 sinceridad ; 3
@@ -19054,7 +18748,6 @@ singulares ; 1
 singularidad ; 1
 singularmente ; 2
 siniestra ; 1
-sino ; 250
 sintate ; 1
 sintese ; 1
 sinti ; 4
@@ -19160,7 +18853,6 @@ sobrada ; 3
 sobradamente ; 3
 sobrante ; 1
 sobras ; 1
-sobre ; 477
 sobreaade ; 1
 sobreabundante ; 1
 sobrecargados ; 1
@@ -19236,17 +18928,13 @@ sofocante ; 1
 sofocar ; 1
 sofs ; 2
 soga ; 1
-sois ; 13
 sol ; 121
-sola ; 58
 solaces ; 1
-solamente ; 31
 solan ; 2
 solander ; 2
 solapado ; 1
 solar ; 1
 solares ; 1
-solas ; 4
 solaz ; 1
 solcitamente ; 1
 soldada ; 2
@@ -19284,7 +18972,6 @@ sollado ; 2
 sollozar ; 3
 sollozo ; 3
 sollozos ; 1
-solo ; 79
 soloma ; 1
 solomillo ; 1
 solt ; 2
@@ -19319,8 +19006,6 @@ someterse ; 1
 sometido ; 2
 sometidos ; 1
 sometieron ; 1
-somos ; 15
-son ; 215
 sonaba ; 2
 sonajas ; 1
 sonambulismos ; 1
@@ -19429,7 +19114,6 @@ sostnme ; 4
 sostuviera ; 1
 sotavento ; 48
 sotaventos ; 1
-soy ; 42
 spase ; 1
 specksioneer ; 1
 specksynder ; 1
@@ -19468,7 +19152,6 @@ strafford ; 1
 street ; 3
 stubb ; 246
 stubbs ; 6
-su ; 2147
 suave ; 29
 suavecito ; 2
 suavemente ; 15
@@ -19749,7 +19432,6 @@ surgiran ; 1
 suroeste ; 1
 surta ; 1
 surtidas ; 1
-sus ; 853
 susan ; 1
 susceptible ; 1
 susodicha ; 2
@@ -19799,10 +19481,6 @@ sutileza ; 4
 sutilezas ; 1
 sutilizadla ; 1
 sutilsima ; 1
-suya ; 31
-suyas ; 9
-suyo ; 31
-suyos ; 17
 swackhammer ; 1
 swain ; 1
 swaine ; 1
@@ -19843,7 +19521,6 @@ tajantes ; 1
 tajar ; 1
 tajo ; 1
 tajos ; 5
-tal ; 188
 talado ; 1
 taladrado ; 1
 taladro ; 1
@@ -19876,13 +19553,10 @@ tamborete ; 3
 tamboril ; 2
 tambucho ; 2
 tamerln ; 1
-tampoco ; 40
-tan ; 542
 tanaquil ; 1
 tanta ; 13
 tantalizadora ; 1
 tantas ; 7
-tanto ; 219
 tantos ; 23
 tapa ; 13
 tapaban ; 1
@@ -19934,7 +19608,6 @@ tcito ; 1
 tcnica ; 2
 tcnicamente ; 7
 tcnico ; 1
-te ; 144
 tea ; 1
 teatro ; 2
 tecel ; 1
@@ -20046,29 +19719,18 @@ tendr ; 15
 tendra ; 5
 tendrais ; 1
 tendramos ; 1
-tendremos ; 1
 tendris ; 6
 tendrn ; 4
 tenebrosa ; 1
 tenebrosidad ; 3
-tened ; 6
 tenedor ; 3
 tenedores ; 1
-tenemos ; 26
-tener ; 81
 tenerife ; 2
 tenerlo ; 1
 tenerlos ; 1
 tenerse ; 1
 tenerte ; 1
-tenga ; 33
-tengamos ; 3
-tengan ; 11
-tengas ; 3
 tengis ; 6
-tengo ; 56
-tenido ; 32
-teniendo ; 11
 tenientes ; 1
 tenis ; 5
 tennessee ; 1
@@ -20088,7 +19750,6 @@ ter ; 1
 terca ; 3
 tercamente ; 3
 tercer ; 15
-tercera ; 6
 terceras ; 1
 tercero ; 9
 terceros ; 1
@@ -20166,7 +19827,6 @@ tez ; 3
 the ; 1
 thomas ; 4
 thorkill ; 1
-ti ; 37
 tiara ; 1
 tibia ; 2
 tibiamente ; 1
@@ -20180,15 +19840,11 @@ tic ; 1
 tictac ; 3
 tiembla ; 7
 tiemble ; 1
-tiempo ; 231
 tiempos ; 40
 tienda ; 5
 tiendas ; 4
 tiende ; 2
 tienden ; 3
-tiene ; 198
-tienen ; 76
-tienes ; 22
 tientas ; 10
 tierna ; 5
 tiernamente ; 1
@@ -20323,14 +19979,10 @@ tocndolas ; 1
 tocndome ; 1
 tocndose ; 3
 tocones ; 1
-toda ; 263
-todas ; 294
 todava ; 137
 toddies ; 1
-todo ; 576
 todopoderosa ; 2
 todopoderoso ; 1
-todos ; 514
 tofet ; 2
 togas ; 1
 toldilla ; 1
@@ -20436,7 +20088,6 @@ tosco ; 1
 tostada ; 3
 tostado ; 2
 tostados ; 1
-total ; 18
 totalidad ; 4
 totalidades ; 1
 totalmente ; 25
@@ -20444,19 +20095,13 @@ town ; 1
 townho ; 11
 tpica ; 1
 traa ; 1
-trabaja ; 4
 trabajaba ; 3
 trabajaban ; 4
 trabajador ; 1
 trabajadores ; 4
-trabajamos ; 3
-trabajan ; 1
 trabajando ; 5
-trabajar ; 17
 trabajaremos ; 1
-trabajas ; 1
 trabaje ; 1
-trabajo ; 46
 trabajos ; 7
 trabando ; 1
 trabas ; 1
@@ -20567,7 +20212,6 @@ transportas ; 1
 transversalmente ; 1
 trapo ; 1
 trapos ; 2
-tras ; 78
 trasbordador ; 2
 trascendental ; 1
 trascendentales ; 1
@@ -20590,7 +20234,6 @@ trastos ; 1
 trasvasando ; 1
 trasvasar ; 1
 trat ; 5
-trata ; 13
 trataba ; 9
 trataban ; 3
 tratada ; 1
@@ -20645,7 +20288,6 @@ trepan ; 2
 trepando ; 1
 trepar ; 4
 trepidacin ; 1
-tres ; 251
 trescientas ; 3
 trescientos ; 4
 trescientosava ; 3
@@ -20767,7 +20409,6 @@ ttricas ; 1
 ttrico ; 1
 ttulo ; 6
 ttulos ; 3
-tu ; 88
 tubera ; 5
 tubo ; 6
 tubos ; 5
@@ -20811,19 +20452,8 @@ turcos ; 6
 turnndose ; 1
 turno ; 8
 turnos ; 1
-tus ; 26
 tutelar ; 1
 tutores ; 1
-tuve ; 8
-tuviera ; 18
-tuvieran ; 1
-tuvieron ; 1
-tuviese ; 1
-tuvimos ; 6
-tuvo ; 17
-tuya ; 1
-tuyo ; 6
-tuyos ; 1
 tyerman ; 1
 u ; 13
 ua ; 1
@@ -20849,10 +20479,7 @@ ululantes ; 1
 umbilical ; 1
 umbral ; 5
 umbroso ; 2
-un ; 2817
-una ; 2022
 unan ; 1
-unas ; 69
 uncidos ; 1
 uncin ; 1
 undcimo ; 1
@@ -20892,8 +20519,6 @@ universo ; 6
 unjan ; 1
 unmonos ; 1
 unnime ; 1
-uno ; 268
-unos ; 132
 unsono ; 1
 untados ; 1
 untan ; 1
@@ -20912,16 +20537,12 @@ urgente ; 1
 urja ; 1
 urna ; 1
 us ; 2
-usa ; 12
 usaba ; 2
 usada ; 3
 usado ; 6
 usados ; 1
-usamos ; 1
-usan ; 9
 usando ; 7
 usanza ; 4
-usar ; 8
 usara ; 2
 usarais ; 1
 usarlas ; 1
@@ -20929,10 +20550,8 @@ usarlo ; 2
 usarse ; 3
 use ; 2
 usndose ; 1
-uso ; 15
 usos ; 3
 ust ; 4
-usted ; 43
 ustedes ; 5
 usual ; 2
 usurpacin ; 2
@@ -20946,7 +20565,6 @@ uuuj ; 1
 uvas ; 3
 uzaro ; 1
 v ; 9
-va ; 114
 vaca ; 13
 vacacin ; 1
 vacaciones ; 2
@@ -20988,7 +20606,6 @@ vagusimas ; 1
 vahos ; 2
 vaina ; 4
 vainas ; 3
-vais ; 9
 vaivn ; 1
 vajilla ; 2
 valdra ; 1
@@ -21010,14 +20627,11 @@ valioso ; 7
 valle ; 12
 vallecito ; 1
 valles ; 7
-valor ; 19
 valorada ; 1
 valorado ; 1
 valores ; 1
 valparaso ; 1
 valverde ; 1
-vamos ; 83
-van ; 24
 vana ; 3
 vanagloria ; 1
 vanamente ; 3
@@ -21046,13 +20660,11 @@ variados ; 3
 variando ; 1
 variante ; 1
 variar ; 1
-varias ; 31
 variedad ; 2
 variedades ; 7
 varilla ; 3
 varillas ; 3
 vario ; 1
-varios ; 39
 varita ; 2
 varn ; 2
 varonil ; 1
@@ -21067,7 +20679,6 @@ vastas ; 12
 vasto ; 7
 vastos ; 4
 vaticanas ; 1
-vaya ; 31
 vayas ; 1
 vctima ; 2
 vctimas ; 2
@@ -21077,7 +20688,6 @@ veais ; 2
 veamos ; 3
 vean ; 9
 veas ; 1
-veces ; 199
 vecina ; 1
 vecindad ; 4
 vecino ; 3
@@ -21188,7 +20798,6 @@ ventilado ; 2
 ventral ; 1
 ventrculos ; 1
 veo ; 23
-ver ; 172
 vera ; 1
 veracidad ; 2
 veran ; 1
@@ -21199,11 +20808,8 @@ veraz ; 1
 verbal ; 1
 verbalmente ; 1
 verd ; 1
-verdad ; 66
-verdadera ; 21
 verdaderamente ; 7
 verdaderas ; 2
-verdadero ; 9
 verdaderos ; 4
 verdades ; 3
 verde ; 34
@@ -21273,7 +20879,6 @@ vetas ; 1
 vete ; 6
 veterano ; 2
 veteranos ; 2
-vez ; 469
 vi ; 32
 viaj ; 1
 viaja ; 1
@@ -21560,10 +21165,7 @@ von ; 2
 voraces ; 4
 voracid ; 2
 voracidad ; 2
-vosotras ; 3
-vosotros ; 77
 voto ; 2
-voy ; 39
 voz ; 57
 vrgenes ; 4
 vrtebra ; 3
@@ -21590,10 +21192,6 @@ vuelve ; 36
 vuelven ; 11
 vuelves ; 1
 vuelvo ; 9
-vuestra ; 27
-vuestras ; 14
-vuestro ; 31
-vuestros ; 17
 vulgar ; 6
 vulgares ; 2
 vulgaridades ; 1
@@ -21682,8 +21280,6 @@ xxxix ; 1
 xxxv ; 1
 xxxvii ; 1
 xxxviii ; 1
-y ; 6508
-ya ; 263
 yaca ; 1
 yacamos ; 1
 yacan ; 2
@@ -21703,7 +21299,6 @@ yerma ; 2
 yermos ; 1
 yesca ; 1
 yeso ; 1
-yo ; 355
 yojo ; 17
 yola ; 1
 york ; 5

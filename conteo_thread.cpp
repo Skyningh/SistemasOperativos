@@ -10,7 +10,9 @@
 #include <mutex>
 #include <condition_variable>
 #include <queue>
+#include <unordered_set>
 #include <unistd.h>
+#include "funciones.h"
 
 using namespace std;
 
@@ -19,6 +21,7 @@ mutex cout_mutex; // Mutex para la salida en consola
 condition_variable cv; // Variable de condición para la sincronización
 queue<string> work_queue; // Cola de trabajo para las rutas de archivos
 bool terminado = false; // Bandera para indicar que no hay más tareas
+unordered_set<string> stopWords; // Contiene las stop words
 
 // Convierte las palabras a minúsculas
 string convertirMinusculas(string palabra) {
@@ -27,7 +30,7 @@ string convertirMinusculas(string palabra) {
     return palabra_minus;
 }
 
-// Elimina caracteres de una palabra
+// Elimina caracteres no alfabéticos de una palabra
 string eliminarCaracteres(string palabra) {
     palabra.erase(remove_if(palabra.begin(), palabra.end(), [](char c) {
         return !isalpha(c);
@@ -35,29 +38,78 @@ string eliminarCaracteres(string palabra) {
     return palabra;
 }
 
-// Función que cuenta las palabras
-void contarPalabras(const string& ruta_archivo, const string& pathOut, int thread_id) {
-    ifstream archivo(ruta_archivo);
-    if (!archivo.is_open()) {
-        cerr << "No se pudo abrir el archivo de entrada: " << ruta_archivo << endl;
-        return;
+// Función para cargar las stop words desde un archivo
+unordered_set<string> cargarStopWords(const string& stopWordsFile) {
+    unordered_set<string> stopWords;
+    ifstream file(stopWordsFile);
+    string palabra;
+
+    if (!file.is_open()) {
+        cerr << "Error: No se pudo abrir el archivo de stop words." << endl;
+        return stopWords;
     }
 
-    map<string, int> contador_palabras;
-    string linea, palabra;
+    while (file >> palabra) {
+        stopWords.insert(palabra);
+    }
 
-    while (getline(archivo, linea)) {
-        stringstream ss(linea);
+    file.close();
+    return stopWords;
+}
+
+// Función para eliminar las stop words de un archivo
+string borrarStopWords(const string& inputFile) {
+    ifstream inFile(inputFile);
+    stringstream outContent;
+    string line;
+
+    if (!inFile.is_open()) {
+        cerr << "Error: No se pudo abrir el archivo de entrada." << endl;
+        return "";
+    }
+
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        string palabra;
+
+        // Filtrar palabras eliminando las stop words
         while (ss >> palabra) {
             palabra = eliminarCaracteres(palabra);
             palabra = convertirMinusculas(palabra);
-            if (!palabra.empty()) {
-                contador_palabras[palabra]++;
+
+            if (!palabra.empty() && stopWords.find(palabra) == stopWords.end()) {
+                outContent << palabra << " ";
             }
         }
+        outContent << endl;
     }
-    archivo.close();
 
+    inFile.close();
+    cout << "La limpieza de stop words se ha llevado a cabo correctamente para el archivo: " << inputFile << endl << endl;
+    return outContent.str();
+}
+
+// Función que cuenta las palabras
+void contarPalabras(const string& ruta_archivo, const string& pathOut, int thread_id) {
+    // Paso 1: Borrar las stop words del archivo
+    string contenidoFiltrado = borrarStopWords(ruta_archivo);
+    if (contenidoFiltrado.empty()) {
+        cerr << "Error: No se pudo procesar el archivo " << ruta_archivo << endl;
+        return;
+    }
+
+    // Paso 2: Contar palabras en el contenido filtrado
+    map<string, int> contador_palabras;
+    stringstream ss(contenidoFiltrado);
+    string palabra;
+
+    while (ss >> palabra) {
+        if (!palabra.empty()) {
+            contador_palabras[palabra]++;
+        }
+    }
+
+    // Paso 3: Guardar el conteo en el archivo de salida
     {
         lock_guard<mutex> lock(mtx);
         ofstream archivo_salida(pathOut);
@@ -66,11 +118,12 @@ void contarPalabras(const string& ruta_archivo, const string& pathOut, int threa
             return;
         }
 
-        for (auto [palabra, cantidad] : contador_palabras) {
+        for (auto& [palabra, cantidad] : contador_palabras) {
             archivo_salida << palabra << " ; " << cantidad << endl;
         }
     }
 
+    // Mostrar estadísticas
     {
         lock_guard<mutex> lock(cout_mutex);
         cout << "Thread " << thread_id << ": Libro " << ruta_archivo << " procesado con éxito!" << endl;
@@ -115,7 +168,7 @@ int procesarConThreads(const string& ruta_input, const string& ruta_output, cons
                         cout_mutex.unlock();
                     } else {
                         cout_mutex.lock();
-                        cout << "Thread " << i << ": Esperando por nuevos archivos..." << endl;
+                        cout << "Thread " << i << ": Trabajo terminado." << endl;
                         cout_mutex.unlock();
                         break;  // No hay más archivos para procesar.
                     }
@@ -130,41 +183,103 @@ int procesarConThreads(const string& ruta_input, const string& ruta_output, cons
     for (auto& thread : threads) {
         thread.join();
     }
-
+    cout<<"\033[32m"<<"Conteo finalizado con éxito!! "<<"\033[0m"<<endl<<endl;
     return EXIT_SUCCESS;
 }
 
 int main() {
+    envLoad();
+    char* stopWordsFile = getenv("stop_word");
+    char* cantidad_threads1 = getenv("cantidad_thread");
+    int cantidad_threads = atoi(cantidad_threads1);
+
     int opcion3;
-    //string pathIn = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/libros";
-    //string pathOut = "/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/prueba";
-    string pathIn = "/home/rudy/2024/SO/SistemasOperativos/libros";
-    string pathOut = "/home/rudy/2024/SO/SistemasOperativos/prueba";
-    string extension = ".txt"; // Puedes modificar la extensión según tus archivos
-    int cantidad_threads = 4; // Por defecto, 4 threads
+    string pathIn;
+    string pathOut;
+    string extension;
+    bool check1 = false, check2 = false, check3 = false;
 
     pid_t pid = getpid();
-    cout << "\nPrograma contador de palabras" << endl;
+    cout << "\nPrograma contador de palabras con hilos" << endl;
     cout << "PID: " << pid << endl;
+    
+    // Cargar las stop words
+    stopWords = cargarStopWords(stopWordsFile);
+    if (stopWords.empty()) {
+        cerr << "No se pudieron cargar las stop words. Saliendo..." << endl;
+        return EXIT_FAILURE;
+    }
 
     do { 
-        cout << "Para procesar presione 1: ";
+        cout << "#########################################"<<endl<<endl;
+        cout << "Seleccione la opción: " << endl;
+        cout << "\n0) Salir" << endl;
+        cout << "1) Extensión de archivos a procesar (ej: txt)" << endl;
+        cout << "2) Path de carpeta a procesar (ej: /home/usuario/in)" << endl;
+        cout << "3) Path de carpeta de salida (ej: /home/usuario/out)" << endl;
+        cout << "4) Procesar con " << cantidad_threads << " threads" <<endl<<endl;
+        cout << "#########################################"<<endl<<endl;
+
+        cout << "Escriba aquí: ";
+
         cin >> opcion3;
 
         switch (opcion3) {
+            case 0: {
+                system("clear");
+                cout << "Saliendo..." << endl;
+                break;
+            }
+
             case 1: {
-                cout << "Procesando con " << cantidad_threads << " threads..." << endl;
-                procesarConThreads(pathIn, pathOut, extension, cantidad_threads);
-                cout << "Conteo hecho con éxito" << endl;
+                system("clear");
+                cout << "Opción 1: Extensión de archivos a procesar: ";
+                cin >> extension;
+                extension = '.' + extension;
+                cout << "Extensión seleccionada: " << extension << endl<<endl;
+                check1 = true;
+                break;
+            }
+            case 2: {
+                cout << "Opción 2: Path de carpeta a procesar: ";
+                cin >> pathIn;
+                while (!filesystem::exists(pathIn) || !filesystem::is_directory(pathIn)) {
+                    cerr << "\033[31m" << "La carpeta de entrada no existe o no es un directorio: " << "\033[0m" << pathIn << endl;
+                    cout << "Por favor ingrese una carpeta que exista: ";
+                    cin >> pathIn;
+                }
+                check2 = true;
+                break;
+            }
+            case 3: {
+                cout << "Opción 3: Path de carpeta de salida: ";
+                cin >> pathOut;
+                while (!filesystem::exists(pathOut) || !filesystem::is_directory(pathOut)) {
+                    cerr << "\033[31m" << "La carpeta de salida no existe o no es un directorio: " << "\033[0m" << pathOut << endl;
+                    cout << "Por favor ingrese una carpeta que exista: ";
+                    cin >> pathOut;
+                }
+                check3 = true;
+                break;
+            }
+            case 4: {
+                system("clear");
+                cout << "Opción 4: Procesar" << endl<<endl;
+                if (!check1 || !check2 || !check3) {
+                    cerr << "\033[31m" << "Error, debe completar las opciones 1), 2), y 3) antes de procesar.\n" << "\033[0m";
+                    break;
+                } else {
+                    cout <<"\033[32m"<< "Iniciando procesamiento..." <<"\033[0m"<< endl;
+                    procesarConThreads(pathIn, pathOut, extension, cantidad_threads);
+                }
                 break;
             }
             default: {
-                system("clear");
-                cout << "\033[31mOpción inválida. Intente de nuevo.\033[0m" << endl;
+                cerr << "Opción inválida." << endl;
                 break;
             }
         }
-    } while (opcion3 != 1);
-    
-    return 0;
+    } while (opcion3 != 0);
+
+    return EXIT_SUCCESS;
 }

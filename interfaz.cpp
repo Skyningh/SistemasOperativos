@@ -199,7 +199,7 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         case 6: {
             system("clear");
             //Ejecuta programa externo
-            int status = system("/home/esperanza/Escritorio/UACh/Sem6/SistemasOperativos/Trabajo/SistemasOperativos/procesar");
+            int status = system("/procesar");
             if (status == -1){
                 cerr << "Falló la ejecución del programa hijo" << endl;
             } else{
@@ -275,6 +275,18 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
             break;
         }
         case 10:{ // HACER QUE LA 11 REVISE SI SE EJECUTO LA 10
+            system("clear");
+            int status = system("/conteo");
+            if (status == -1){
+                cerr << "Falló la ejecución del programa hijo" << endl;
+            } else{
+                cout << "El programa hijo termino con estado: " << WEXITSTATUS(status) << endl;
+            }
+            cout << "Continua el proceso padre" << endl;
+            menu(usuario, frase, vec, num, PATHDB);
+            
+            return 6; //Si retorna 6, tira la opción "6", que es salir del programa QUE ENREDO ESTOS RETURN DIOSSSS
+
             if (usuario.rol == "admin"){
                 system("clear");
                 cout << "Opción 10" << endl;
