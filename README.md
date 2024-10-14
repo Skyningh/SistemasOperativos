@@ -94,3 +94,41 @@ Estas funciones procesan los archivos de texto:
 - **`int procesar(string ext, string pathIn, string pathOut)`**  
   Aplica la función de contar palabras a todos los archivos en la carpeta de entrada.
 
+### Conteo paralelo con threads (`conteo_thread.cpp`)
+
+Estas funciones manejan el conteo paralelo con threads:
+
+- **`string convertirMinusculas(string palabra)`**  
+  Convierte las palabras a minisculas.
+
+- **`string eliminarCaracteres(string palabra)`**
+  Elimina caracteres no alfabéticos de una palabra.
+
+- **`unordered_set<string> cargarStopWords(const string& stopWordsFile)`**
+  Carga las stop words desde un archivo.
+
+- **`string borrarStopWords(const string& inputFile)`**
+  Elimina las stop words de un archivo.
+
+- **`void contarPalabras(const string& ruta_archivo, const string& pathOut, int thread_id)`**
+  Cuenta las palabras de los archivos
+
+- **`vector<string> lee_archivos(const string& ruta_input, const string& file_type)`**
+  Lee los archivos de un directorio con una extensión especifica
+
+- **`void mapeoArchivos()`**
+  Hace un archivo map que tiene nombrelibro,id
+
+- **`int procesarConThreads(const string& ruta_input, const string& ruta_output, const string& file_type, int num_threads)`**
+  Maneja la creación de hilos y la asignación de tareas.
+
+### Creación del inverted index (`inverted_index.cpp`)
+
+Estas funciones crean el inverted index:
+
+- **`void procesarArchivo(int id, string archivo)`**
+  Procesa cada archivo y extrae sus palabras y cantidad de veces que se ocupan.
+
+- **`void creariIndex(string iIndex, string pathOut)`**
+  Crea el indice invertido a partir de los archivos en pathOut
+

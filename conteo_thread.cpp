@@ -142,7 +142,7 @@ vector<string> lee_archivos(const string& ruta_input, const string& file_type) {
     }
     return files;
 }
-
+//Hace un archivo map que tiene nombrelibro,id
 void mapeoArchivos(){
     char* mapa_archivos_env = getenv("mapa_archivos");
     if(mapa_archivos_env == nullptr){
