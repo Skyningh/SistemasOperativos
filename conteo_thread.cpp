@@ -216,12 +216,9 @@ int main() {
     char* stopWordsFile = getenv("stop_word");
     char* cantidad_threads1 = getenv("cantidad_thread");
     int cantidad_threads = atoi(cantidad_threads1);
-
-    int opcion3;
-    string pathIn;
-    string pathOut;
-    string extension;
-    bool check1 = false, check2 = false, check3 = false;
+    char* pathIn = getenv("pathIn");
+    char* pathOut = getenv("pathOut");
+    string extension = ".txt";
 
     pid_t pid = getpid();
     cout << "\nPrograma contador de palabras con hilos" << endl;
@@ -237,76 +234,8 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    do { 
-        cout << "#########################################"<<endl<<endl;
-        cout << "Seleccione la opción: " << endl;
-        cout << "\n0) Salir" << endl;
-        cout << "1) Extensión de archivos a procesar (ej: txt)" << endl;
-        cout << "2) Path de carpeta a procesar (ej: /home/usuario/in)" << endl;
-        cout << "3) Path de carpeta de salida (ej: /home/usuario/out)" << endl;
-        cout << "4) Procesar con " << cantidad_threads << " threads" <<endl<<endl;
-        cout << "#########################################"<<endl<<endl;
-
-        cout << "Escriba aquí: ";
-
-        cin >> opcion3;
-
-        switch (opcion3) {
-            case 0: {
-                system("clear");
-                cout << "Saliendo..." << endl;
-                break;
-            }
-
-            case 1: {
-                system("clear");
-                cout << "Opción 1: Extensión de archivos a procesar: ";
-                cin >> extension;
-                extension = '.' + extension;
-                cout << "Extensión seleccionada: " << extension << endl<<endl;
-                check1 = true;
-                break;
-            }
-            case 2: {
-                cout << "Opción 2: Path de carpeta a procesar: ";
-                cin >> pathIn;
-                while (!filesystem::exists(pathIn) || !filesystem::is_directory(pathIn)) {
-                    cerr << "\033[31m" << "La carpeta de entrada no existe o no es un directorio: " << "\033[0m" << pathIn << endl;
-                    cout << "Por favor ingrese una carpeta que exista: ";
-                    cin >> pathIn;
-                }
-                check2 = true;
-                break;
-            }
-            case 3: {
-                cout << "Opción 3: Path de carpeta de salida: ";
-                cin >> pathOut;
-                while (!filesystem::exists(pathOut) || !filesystem::is_directory(pathOut)) {
-                    cerr << "\033[31m" << "La carpeta de salida no existe o no es un directorio: " << "\033[0m" << pathOut << endl;
-                    cout << "Por favor ingrese una carpeta que exista: ";
-                    cin >> pathOut;
-                }
-                check3 = true;
-                break;
-            }
-            case 4: {
-                system("clear");
-                cout << "Opción 4: Procesar" << endl<<endl;
-                if (!check1 || !check2 || !check3) {
-                    cerr << "\033[31m" << "Error, debe completar las opciones 1), 2), y 3) antes de procesar.\n" << "\033[0m";
-                    break;
-                } else {
-                    cout <<"\033[32m"<< "Iniciando procesamiento..." <<"\033[0m"<< endl;
-                    procesarConThreads(pathIn, pathOut, extension, cantidad_threads);
-                }
-                break;
-            }
-            default: {
-                cerr << "Opción inválida." << endl;
-                break;
-            }
-        }
-    } while (opcion3 != 0);
+    cout << "\033[32m" << "Iniciando procesamiento..." <<"\033[0m" << endl;
+    procesarConThreads(pathIn,pathOut,extension,cantidad_threads);
 
     return EXIT_SUCCESS;
 }

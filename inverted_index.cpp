@@ -68,7 +68,7 @@ void creariIndex(string iIndex, string pathOut){
 
 int main(){
     envLoad();
-    string pathOut = "/home/rudy/2024/SO/SistemasOperativos/prueba";
+    string pathOut = "/home/rudy/2024/SO/SistemasOperativos/conteo_output";
     char* iIndexenv = getenv("inverted_index");
 
     if(iIndexenv == nullptr){
