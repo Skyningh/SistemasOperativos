@@ -145,6 +145,10 @@ vector<string> lee_archivos(const string& ruta_input, const string& file_type) {
 
 void mapeoArchivos(){
     char* mapa_archivos_env = getenv("mapa_archivos");
+    if(mapa_archivos_env == nullptr){
+        cerr << "Error en la variable de entorno" << endl;
+        return;
+    }
     string mapa_archivos(mapa_archivos_env);
     string libros = "/home/rudy/2024/SO/SistemasOperativos/libros";
     int id = 0;

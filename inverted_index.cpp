@@ -66,14 +66,23 @@ void creariIndex(string iIndex, string pathOut){
 
 int main(){
     string pathOut = "/home/rudy/2024/SO/SistemasOperativos/prueba";
-    string iIndex = "/home/rudy/2024/SO/SistemasOperativos/complementos/indiceinv.txt";
+    char* iIndexenv = getenv("inverted_index");
 
-    if(pathOut.empty() || iIndex.empty()){
-        cerr << "Alguna de las carpetas estan vacias" << endl;
+    if(iIndexenv == nullptr){
+        cerr << "Error en la variable de entorno" << endl;
         return EXIT_FAILURE;
     }
 
-    creariIndex(iIndex, pathOut);
+    cout << "avance 1 " << endl;
+    string invertedIndex(iIndexenv);
+
+
+    if(pathOut.empty() || invertedIndex.empty()){
+        cerr << "Alguna de las carpetas esta vacia" << endl;
+        return EXIT_FAILURE;
+    }
+
+    creariIndex(invertedIndex, pathOut);
 
     return 0;
 }
