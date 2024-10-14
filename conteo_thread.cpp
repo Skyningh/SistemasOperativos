@@ -143,6 +143,26 @@ vector<string> lee_archivos(const string& ruta_input, const string& file_type) {
     return files;
 }
 
+void mapeoArchivos(){
+    char* mapa_archivos_env = getenv("mapa_archivos");
+    string mapa_archivos(mapa_archivos_env);
+    string libros = "/home/rudy/2024/SO/SistemasOperativos/libros";
+    int id = 0;
+    ofstream mapa(mapa_archivos);
+
+    if (!mapa){
+        cerr << "El archivo no se pudo abrir" << endl;
+    }
+
+    for (auto entrada : filesystem::directory_iterator(libros)){
+        if(entrada.is_regular_file()){
+            mapa << entrada.path().stem().string() << ", " << id << endl;
+            id++;
+        }
+    }
+    mapa.close();
+}
+
 // Función que maneja la creación de hilos y la asignación de tareas
 int procesarConThreads(const string& ruta_input, const string& ruta_output, const string& file_type, int num_threads) {
     vector<string> files = lee_archivos(ruta_input, file_type);
@@ -202,6 +222,9 @@ int main() {
     pid_t pid = getpid();
     cout << "\nPrograma contador de palabras con hilos" << endl;
     cout << "PID: " << pid << endl;
+
+    //Mapa archivos
+    mapeoArchivos();
     
     // Cargar las stop words
     stopWords = cargarStopWords(stopWordsFile);
