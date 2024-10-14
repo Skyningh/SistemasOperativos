@@ -75,8 +75,6 @@ int main(){
         cerr << "Error en la variable de entorno" << endl;
         return EXIT_FAILURE;
     }
-
-    cout << "avance 1 " << endl;
     string invertedIndex(iIndexenv);
 
 

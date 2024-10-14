@@ -13,6 +13,8 @@
 
 using namespace std;
 
+bool check10 = false;
+
 
 int subMenu() {
     int opcion2;
@@ -276,11 +278,12 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         }
         case 10:{ // HACER QUE LA 11 REVISE SI SE EJECUTO LA 10
             system("clear");
-            int status = system("/conteo");
+            int status = system("./conteo");
             if (status == -1){
                 cerr << "Falló la ejecución del programa hijo" << endl;
             } else{
                 cout << "El programa hijo termino con estado: " << WEXITSTATUS(status) << endl;
+                check10 = true;
             }
             cout << "Continua el proceso padre" << endl;
             menu(usuario, frase, vec, num, PATHDB);
@@ -298,13 +301,27 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
             break;
         }
         case 11:{
-            if (usuario.rol == "admin"){
+            if (check10 == false){
                 system("clear");
-                cout << "Opción 11" << endl;
-                if (subMenu() == 0) return 6;
-            }
-            else{
-                cout<<"\033[31m"<< "Opción inválida, intente de nuevo!!" <<"\033[0m"<<endl;
+                cout << "\033[31m"<< "Debes ejecutar la opción 10 primero!!" <<"\033[0m"<<endl;
+            } else{
+                if (usuario.rol == "admin"){
+                    system("clear");
+                    int status1 = system("./ii");
+                    if (status1 == -1){
+                        cerr << "Falló la ejecución del programa hijo" << endl;
+                    } else{
+                        cout << "El programa hijo termino con estado: " << WEXITSTATUS(status1) << endl;
+                    }
+                    cout << "Continua el proceso padre" << endl;
+                    menu(usuario, frase, vec, num, PATHDB);
+
+                    return 6;
+                }
+                else{
+                    cout<<"\033[31m"<< "Opción inválida, intente de nuevo!!" <<"\033[0m"<<endl;
+                }
+
             }
             break;
         }
