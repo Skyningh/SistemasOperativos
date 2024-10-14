@@ -11,6 +11,8 @@
 #include <condition_variable>
 #include <queue>
 #include <unistd.h>
+#include "funciones.h"
+
 
 using namespace std;
 
@@ -65,6 +67,7 @@ void creariIndex(string iIndex, string pathOut){
 }
 
 int main(){
+    envLoad();
     string pathOut = "/home/rudy/2024/SO/SistemasOperativos/prueba";
     char* iIndexenv = getenv("inverted_index");
 
