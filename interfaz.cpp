@@ -135,6 +135,8 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         cout << "9. Lista de usuarios" << endl;
         cout << "10. Conteo paralelo con threads" << endl;
         cout << "11. Crear índice invertido" << endl;
+        cout << "12. Analisis de performance" << endl;
+        cout << "13. Planificador" << endl;
     }
     cout << "0. Salir" << endl;
 
@@ -324,6 +326,23 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
 
             }
             break;
+        }
+        case 12:{
+            system("clear");
+            if (usuario.rol == "admin"){
+                cout << "Opcion 12" << endl;
+            }
+            menu(usuario, frase, vec, num, PATHDB);
+            break;
+
+
+        }
+        case 13:{
+            system("clear");
+            if(usuario.rol == "admin"){
+                cout << "Opcion 13" << endl;
+            }
+            if (subMenu() == 0) return 6;
         }
         default:
             cout<<endl<<"\033[31m"<< "Opción inválida. Intente de nuevo.!!!!"<<"\033[0m"<<endl;

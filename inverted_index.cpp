@@ -57,7 +57,7 @@ void creariIndex(string iIndex, string pathOut){
         cerr << "Error al crear el archivo de indice invertido" << endl;
         return;
     }
-    
+
     for(auto [palabra, info] : indice_inv){
         Output << palabra << ";" << info << endl;
     }
