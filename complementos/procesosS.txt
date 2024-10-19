@@ -1,0 +1,4 @@
+1;suma;1.1,2
+2;resta;3.0,4
+3;multiplicacion;2,3.5
+4;division;2,6

@@ -14,7 +14,7 @@ float multiplicacion(float n1,float n2){
 }
 
 float division(float n1,float n2){
-    if(n2 == 0){
+    if(n2 == 0.0){
         return -1;
     } else{
         return n1/n2;
