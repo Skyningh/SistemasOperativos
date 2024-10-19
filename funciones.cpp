@@ -292,3 +292,14 @@ void envLoad() {
 
     file.close();
 }
+
+vector<string> split(string str, char separador){
+    vector<string> vectorMensaje;
+    string token;
+    stringstream ss(str);
+
+    while(getline(ss, token, separador)){
+        vectorMensaje.push_back(token);
+    }
+    return vectorMensaje;
+}

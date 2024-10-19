@@ -340,7 +340,23 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         case 13:{
             system("clear");
             if(usuario.rol == "admin"){
+                envLoad();
+                char* cantidadCoresenv = getenv("CANTIDAD_CORES");
+                char* pathInenv = getenv("PROCESOS");   
+                char* pathOutenv = getenv("RESULTADOS");
+                string cantidadCores(cantidadCoresenv);
+                string pathIn(pathInenv);
+                string pathOut(pathOutenv); 
                 cout << "Opcion 13" << endl;
+                string ejecutar = "./planificador -c "+cantidadCores+" -i "+pathIn+" -o "+pathOut;
+                int status = system(ejecutar.c_str());
+                if (status == -1){
+                cerr << "Falló la ejecución del programa hijo" << endl;
+                } 
+                else{
+                cout << "El programa hijo termino con estado: " << WEXITSTATUS(status) << endl;
+                }
+
             }
             if (subMenu() == 0) return 6;
         }

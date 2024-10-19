@@ -27,6 +27,8 @@ float prom(vector<int> vec);
 
 vector<int> procesaVector(string a);
 
+vector<string> split(string str, char separador);
+
 tuple<string, string, string> leerEnv();
 
 void eliminarUsuarios(string usuario, string contraseña, string file);
