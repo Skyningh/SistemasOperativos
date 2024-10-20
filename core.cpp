@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <getopt.h>
+#include <fstream>
 #include "funciones.h"
 using namespace std;
 
@@ -18,6 +19,7 @@ float multiplicacion(float n1,float n2){
 
 float division(float n1,float n2){
     if(n2 == 0.0){
+        cerr << "No se puede dividir por 0" << endl;
         return -1;
     } else{
         return n1/n2;
@@ -26,6 +28,7 @@ float division(float n1,float n2){
 
 
 int main(int argc, char* argv[]){
+
     int opt;
     string coreid;
     string id;
@@ -54,6 +57,15 @@ int main(int argc, char* argv[]){
                 cerr<<"\033[31m" << "Error en el paso de parametros." <<"\033[0m"<<endl;
         }
     }
+
+    ofstream file("complementos/cores/core"+coreid+".txt");
+    if(!file.is_open()){
+                cerr << "El archivo complementos/cores/core"+coreid+".txt"+" no se pudo abrir" << endl;
+                return EXIT_FAILURE;
+            }
+    file << "0";
+    file.close();
+    
 
     if(operacion == "suma"){
         return suma(n1,n2);
