@@ -203,7 +203,7 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         case 6: {
             system("clear");
             //Ejecuta programa externo
-            int status = system("/procesar");
+            int status = system("./procesar");
             if (status == -1){
                 cerr << "Falló la ejecución del programa hijo" << endl;
             } else{
@@ -280,7 +280,17 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         }
         case 10:{ // HACER QUE LA 11 REVISE SI SE EJECUTO LA 10
             system("clear");
-            int status = system("./conteo");
+
+            envLoad();
+            char* pathBD = getenv("PATHBD");
+            char* stopWordsFile = getenv("stop_word");
+            char* cantidad_threads1 = getenv("cantidad_thread");
+            int cantidad_threads = atoi(cantidad_threads1);
+            char* pathIn = getenv("pathIn");
+            char* pathOut = getenv("pathOut");
+
+            string comando = "./conteo -s " +  string(stopWordsFile) +  " -t " + to_string(cantidad_threads) +  " -i " + string(pathIn) + " -o " + string(pathOut);
+            int status = system(comando.c_str());
             if (status == -1){
                 cerr << "Falló la ejecución del programa hijo" << endl;
             } else{
@@ -330,7 +340,18 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         case 12:{
             system("clear");
             if (usuario.rol == "admin"){
-                cout << "Opcion 12" << endl;
+                cout << "Opcion 12: Análisis de Performance." << endl;
+                envLoad();
+                char* array_threads = getenv("ARRAY_THREADS");
+                char* nrepeticiones = getenv("REPETICIONES");
+                int repeticiones = atoi(nrepeticiones);
+                if (repeticiones < 2){
+                    cout<< "Error, el número de repeticiones debe ser mayor o igual a 2."<<endl<<endl;
+                    return 6;
+                }
+                string comando = "./ejecutador -t " +  string(array_threads) +  " -r " + to_string(repeticiones);
+                int status = system(comando.c_str());
+
             }
             menu(usuario, frase, vec, num, PATHDB);
             break;

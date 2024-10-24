@@ -142,6 +142,7 @@ vector<string> lee_archivos(const string& ruta_input, const string& file_type) {
     }
     return files;
 }
+
 //Hace un archivo map que tiene nombrelibro,id
 void mapeoArchivos(){
     char* mapa_archivos_env = getenv("mapa_archivos");
@@ -150,7 +151,7 @@ void mapeoArchivos(){
         return;
     }
     string mapa_archivos(mapa_archivos_env);
-    string libros = "/home/rudy/2024/SO/SistemasOperativos/libros";
+    string libros = "./libros";
     int id = 0;
     ofstream mapa(mapa_archivos);
 
@@ -211,14 +212,41 @@ int procesarConThreads(const string& ruta_input, const string& ruta_output, cons
     return EXIT_SUCCESS;
 }
 
-int main() {
-    envLoad();
-    char* stopWordsFile = getenv("stop_word");
-    char* cantidad_threads1 = getenv("cantidad_thread");
-    int cantidad_threads = atoi(cantidad_threads1);
-    char* pathIn = getenv("pathIn");
-    char* pathOut = getenv("pathOut");
+int main(int argc, char* argv[]) {
+    // Variables que se van a obtener de los argumentos de línea de comandos
+    string stopWordsFile;
+    int cantidad_threads = 0;
+    string pathIn;
+    string pathOut;
     string extension = ".txt";
+    
+    // Manejar los argumentos de línea de comandos usando getopt
+    int opt;
+    while ((opt = getopt(argc, argv, "s:t:i:o:")) != -1) {
+        switch (opt) {
+            case 's':
+                stopWordsFile = optarg;  // Archivo de stop words
+                break;
+            case 't':
+                cantidad_threads = atoi(optarg);  // Cantidad de hilos
+                break;
+            case 'i':
+                pathIn = optarg;  // Directorio de entrada
+                break;
+            case 'o':
+                pathOut = optarg;  // Directorio de salida
+                break;
+            default:
+                cerr << "Uso: " << argv[0] << " -s <archivo_stopwords> -t <cantidad_hilos> -i <directorio_entrada> -o <directorio_salida>" << endl;
+                return EXIT_FAILURE;
+        }
+    }
+
+    if (stopWordsFile.empty() || cantidad_threads == 0 || pathIn.empty() || pathOut.empty()) {
+        cerr << "Error: Faltan argumentos obligatorios." << endl;
+        cerr << "Uso: " << argv[0] << " -s <archivo_stopwords> -t <cantidad_hilos> -i <directorio_entrada> -o <directorio_salida>" << endl;
+        return EXIT_FAILURE;
+    }
 
     pid_t pid = getpid();
     cout << "\nPrograma contador de palabras con hilos" << endl;
@@ -234,8 +262,10 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    cout << "\033[32m" << "Iniciando procesamiento..." <<"\033[0m" << endl;
-    procesarConThreads(pathIn,pathOut,extension,cantidad_threads);
+    cout << "\033[32m" << "Stop words cargadas con éxito desde: " << stopWordsFile << "\033[0m" << endl;
+
+    // Procesar archivos con hilos
+    procesarConThreads(pathIn, pathOut, extension, cantidad_threads);
 
     return EXIT_SUCCESS;
 }
