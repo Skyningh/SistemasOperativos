@@ -19,7 +19,7 @@ int selectCore(vector<int> Cores){
 return -1;
 }
 
-vector<string> split(string str, char separador){
+vector<string> split2(string str, char separador){
     vector<string> vectorMensaje;
     string token;
     stringstream ss(str);
@@ -62,11 +62,12 @@ int main(int argc, char* argv[]){
     }
     string lineaProceso;
     while(getline(procesos,lineaProceso)){
-        vector<string> vectorMensaje = split(lineaProceso,';');
+        vector<string> vectorMensaje = split2(lineaProceso,';');
         int id = atoi(vectorMensaje[0].c_str());
         string operacion = vectorMensaje[1];
         string numeros = vectorMensaje[2];
-        vector<string> aux = split(numeros, ',');
+        vector<string> aux = split2(numeros, ',');
+        
         for(int i=0;i<cantidadCores; i++){
             ifstream file("complementos/cores/core"+to_string(i)+".txt");
 
@@ -95,22 +96,20 @@ int main(int argc, char* argv[]){
         }
 
 
+
         cout << "Cantidad de cores: " << cantidadCores << endl;
         int core = selectCore(Cores);
         while (core == -1){
             this_thread::sleep_for(chrono::milliseconds(50));
             core = selectCore(Cores);
         }
-        string mensaje = "(" + to_string(core)+","+operacion+","+aux[0]+","+aux[1]+")";
-        string execdistribuidor = "./distribuidor -m "+mensaje;
+        string mensaje = to_string(core)+","+to_string(id)+","+operacion+","+aux[0]+","+aux[1];
+        string execdistribuidor = "./distribuidor -m '" + mensaje + "'";      
         int status = system(execdistribuidor.c_str());
         if (status == -1){
             cerr << "Falló la ejecución del programa hijo" << endl;
         }
     }
-
-    
-
 
     return 0;
 }
