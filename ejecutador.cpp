@@ -1,9 +1,3 @@
-// Enviar las variables env como argumentos!!! (Para este proceso externo,y conteo dde palabras.) LISTO 
-/*
-Este programa hace una llamada al proceso externo "conteo de palabras", por cada elemento de array threads. LISTO
-Cada una de estas llamadas debe realizarse "REPETICIONES" veces. LISTO
-Los datos de threads y tiempos de ejecución deben ser analizados en "DATOS" con el proceso externo ANALIZADOR. FALTA
-También faltan validaciones, y incluir el txt en el env*/ 
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -12,6 +6,7 @@ También faltan validaciones, y incluir el txt en el env*/
 #include <unistd.h>
 #include <chrono>
 #include <fstream>
+#include <sys/stat.h> // Para verificar la existencia de archivos/directorios
 
 #include "funciones.h"
 
@@ -28,6 +23,12 @@ vector<int> procesarVector(const char* input) {
     }
     
     return numeros;
+}
+
+// Función para verificar si un archivo existe
+bool archivoExiste(const char* path) {
+    struct stat buffer;
+    return (stat(path, &buffer) == 0);
 }
 
 int main (int argc, char* argv[]){
@@ -51,11 +52,32 @@ int main (int argc, char* argv[]){
     envLoad();
     char* stopWordsFile = getenv("stop_word");
     char* cantidad_threads1 = getenv("cantidad_thread");
-    int cantidad_threads = atoi(cantidad_threads1);
     char* pathIn = getenv("pathIn");
     char* pathOut = getenv("pathOut");
     char* datos = getenv("DATOS");
+    char* grafico = getenv("GRAFICO");
     
+    // Validar que las variables de entorno no sean nulas
+    if (!stopWordsFile || !cantidad_threads1 || !pathIn || !pathOut || !datos || !grafico) {
+        cerr << "\033[31m" << "Error: Una o más variables de entorno no están configuradas." << "\033[0m" << endl;
+        return EXIT_FAILURE;
+    }
+    
+    // Validar que las rutas de acceso existen
+    if (!archivoExiste(stopWordsFile)) {
+        cerr << "\033[31m" << "Error: El archivo de stop words no existe en la ruta: " << stopWordsFile << "\033[0m" << endl;
+        return EXIT_FAILURE;
+    }
+    if (!archivoExiste(pathIn)) {
+        cerr << "\033[31m" << "Error: La ruta de entrada no existe: " << pathIn << "\033[0m" << endl;
+        return EXIT_FAILURE;
+    }
+    if (!archivoExiste(pathOut)) {
+        cerr << "\033[31m" << "Error: La ruta de salida no existe: " << pathOut << "\033[0m" << endl;
+        return EXIT_FAILURE;
+    }
+    
+    int cantidad_threads = atoi(cantidad_threads1);
     vector<int> vec = procesarVector(array_threads);
 
     ofstream datosFile(datos);
@@ -63,7 +85,6 @@ int main (int argc, char* argv[]){
         cerr << "Error al abrir el archivo datos.txt" << endl;
         return EXIT_FAILURE;
     }
-
 
     cout<<"\033[32m"<<"Ejecutando con éxito para el vector de threads: "<< array_threads<< ", y con " <<repeticiones<<" repeticiones."<<"\033[0m"<<endl<<endl;
     for (int num : vec) {
@@ -80,7 +101,6 @@ int main (int argc, char* argv[]){
             datosFile << num << " " << tiempo_ejecucion << endl;
 
             cout << "Tiempo de ejecución para " << num << " threads, repetición " << i << ": " << tiempo_ejecucion << " segundos." << endl;
-
         }
     }
     datosFile.close();
@@ -92,9 +112,8 @@ int main (int argc, char* argv[]){
     string analizador_cmd = "python3 analizador.py";
     int status_analizador = system(analizador_cmd.c_str());
 
-
     if (status_analizador == 0) {
-        cout << "\033[32m" << "Gráfico generado con éxito en " << getenv("GRAFICO") << "\033[0m" << endl;
+        cout << "\033[32m" << "Gráfico generado con éxito en " << grafico << "\033[0m" << endl;
     } else {
         cerr << "\033[31m" << "Error al ejecutar el proceso ANALIZADOR" << "\033[0m" << endl;
     }

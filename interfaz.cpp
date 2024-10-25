@@ -13,8 +13,9 @@
 
 using namespace std;
 
-bool check10 = false;
+bool archivoExiste(const char* nombreArchivo);
 
+bool check10 = false;
 
 int subMenu() {
     int opcion2;
@@ -288,6 +289,25 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
             int cantidad_threads = atoi(cantidad_threads1);
             char* pathIn = getenv("pathIn");
             char* pathOut = getenv("pathOut");
+            // Validar que las variables de entorno no sean nulas
+            if (!stopWordsFile || !cantidad_threads1 || !pathIn || !pathOut) {
+                cerr << "\033[31m" << "Error: Una o más variables de entorno no están configuradas." << "\033[0m" << endl;
+                return EXIT_FAILURE;
+            }
+            
+            // Validar que las rutas de acceso existen
+            if (!archivoExiste(stopWordsFile)) {
+                cerr << "\033[31m" << "Error: El archivo de stop words no existe en la ruta: " << stopWordsFile << "\033[0m" << endl;
+                return EXIT_FAILURE;
+            }
+            if (!archivoExiste(pathIn)) {
+                cerr << "\033[31m" << "Error: La ruta de entrada no existe: " << pathIn << "\033[0m" << endl;
+                return EXIT_FAILURE;
+            }
+            if (!archivoExiste(pathOut)) {
+                cerr << "\033[31m" << "Error: La ruta de salida no existe: " << pathOut << "\033[0m" << endl;
+                return EXIT_FAILURE;
+            }
 
             string comando = "./conteo -s " +  string(stopWordsFile) +  " -t " + to_string(cantidad_threads) +  " -i " + string(pathIn) + " -o " + string(pathOut);
             int status = system(comando.c_str());
@@ -344,6 +364,11 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
                 envLoad();
                 char* array_threads = getenv("ARRAY_THREADS");
                 char* nrepeticiones = getenv("REPETICIONES");
+                if (!array_threads || !nrepeticiones) {
+                cerr << "\033[31m" << "Error: Las variables de entorno Repeticiones o Array_Threads no están configuradas." << "\033[0m" << endl;
+                return EXIT_FAILURE;
+                }
+            
                 int repeticiones = atoi(nrepeticiones);
                 if (repeticiones < 2){
                     cout<< "Error, el número de repeticiones debe ser mayor o igual a 2."<<endl<<endl;
@@ -386,4 +411,9 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         
     }
     return 0;
+}
+
+bool archivoExiste(const char* nombreArchivo) {
+    std::ifstream archivo(nombreArchivo);
+    return archivo.good();
 }

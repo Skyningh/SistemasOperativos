@@ -8,7 +8,7 @@
 #include <fstream>
 #include <unistd.h>
 #include <cctype>
-
+#include <sys/stat.h> 
 using namespace std;
 
 Usuario procesarUsuario(string username,  string password, string file) {

@@ -1,6 +1,7 @@
 # Trabajo 1
 ## Descripcion
-Este programa es una interfaz que realiza diversas funciones desde los parámetros ingresados en consola. Puede además, administrar los usuarios registrados en la base de datos, realizar múltiples conteos de palabras en archivos de texto grandes, con el uso de threads. Además de 
+Este programa es una interfaz que realiza diversas funciones desde los parámetros ingresados en consola. Puede además, administrar los usuarios registrados en la base de datos, realizar múltiples conteos simultáneos de palabras en archivos de texto grandes, con el uso de threads, y genera estadísticas de los tiempos de ejecución. Y por último, se usa como una simulación de como trabajan los core en el computador, con un planificador que organiza los procesos, un distribuidor que decodifica los mensajes y escribe la respuesta, y los core que hacen las operaciones.
+
 
 ## Requisitos
 - Un ordenador con Linux, macOS o Windows
@@ -38,9 +39,10 @@ PROCESOSL=./complementos/procesosL.txt -- El archivo de procesos grande
 CANTIDAD_CORES=3 -- Son la cantidad de cores que se simularan en la opcion 13
 RESULTADOS=./complementos/resultados.txt -- Es el archivo donde se guardaran los resultados de la opcion 13
 ESTADO_CORES=./complementos/cores -- Es la carpeta donde estan los archivos de el estado de cada core
-ARRAY_THREADS=1,2,4,8,16
-REPETICIONES=2
-
+ARRAY_THREADS=1,2,4,8,16 -- El arreglo de los threads a utilizar para el conteo de palabras en paralelo
+REPETICIONES=2 -- Cantidad de repeticiones de cada iteración de conteo en cada valor del arreglo thread
+DATOS=./complementos/datos.txt -- Archivo de salida para los tiempos de ejecución de conteo thread
+GRAFICO=./complementos/grafico.png -- Imagen png del gráfico tiempo vs cantidad de threads
 
 ## Funciones
 
@@ -181,8 +183,27 @@ Estas funciones crean el inverted index:
 - **`float division(float n1, float n2)`**
   Verifica si el divisor es 0, si es asi devuelve 0, sino se divide normal
 
+### Ejecución del programa de conteo threads y medición de tiempos (`ejecutador.cpp`)
 
+Este archivo maneja la ejecución del conteo de palabras en paralelo y registra el tiempo de ejecución para distintas configuraciones de threads. Las funciones principales incluyen:
 
+- **`vector<int> procesarVector(const char* input)`**  
+  Convierte una cadena de caracteres en un vector de enteros, separando los valores por comas para representar la lista de threads a probar.
+
+- **`int main(int argc, char* argv[])`**  
+  Configura el programa tomando como argumentos la lista de threads a utilizar y la cantidad de repeticiones deseadas. Ejecuta el conteo de palabras para cada configuración de threads, registra el tiempo de cada ejecución en el archivo especificado por la variable de entorno `DATOS`, y luego llama al script `analizador.py` para la generación del gráfico de rendimiento.
+
+### Análisis y generación de gráficos (`analizador.py`)
+
+Este script en Python lee los datos de tiempos de ejecución y crea un gráfico que muestra cómo varía el rendimiento con el número de threads. Las funciones principales incluyen:
+
+- **`leer_datos(archivo)`**  
+  Lee y organiza los datos desde el archivo `datos.txt`, ordenando los tiempos de ejecución por cantidad de threads.
+
+- **`graficar(datos, repeticiones, grafico_path)`**  
+  Genera un gráfico de líneas que representa el tiempo de ejecución en función del número de threads. Cada repetición se representa en una línea distinta, y el gráfico resultante se guarda en la ruta especificada en la variable de entorno `GRAFICO`. 
+
+Estos archivos permiten un análisis detallado de la eficiencia del programa en función de los threads, identificando configuraciones óptimas para maximizar el rendimiento.
 
 
 

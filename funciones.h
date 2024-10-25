@@ -14,7 +14,6 @@ struct Usuario {
 };
 
 Usuario procesarUsuario(string usuario, string password, string file);
-
 string palindromo(string a);
 
 int vocales(string a);

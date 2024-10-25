@@ -1,4 +1,4 @@
-TARGETS = trabajo1 procesar conteo_thread inverted_index planificador distribuidor core
+TARGETS = trabajo1 procesar conteo_thread inverted_index planificador distribuidor core ejecutador
 
 SRCS1 = main.cpp funciones.cpp interfaz.cpp
 OBJS1 = $(SRCS1:.cpp=.o)
@@ -20,6 +20,9 @@ OBJS6 = $(SRCS6:.cpp=.o)
 
 SRCS7 = core.cpp
 OBJS7 = $(SRCS7:.cpp=.o)
+
+SRCS8 = ejecutador.cpp funciones.cpp
+OBJS8 = $(SRCS8:.cpp=.o)
 
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra
@@ -46,6 +49,9 @@ distribuidor: $(OBJS6)
 
 core: $(OBJS7)
 	$(CXX) $(CXXFLAGS) $(OBJS7) -o core
+
+ejecutador: $(OBJS8)
+	$(CXX) $(CXXFLAGS) $(OBJS8) -o ejecutador
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
