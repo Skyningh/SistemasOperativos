@@ -52,6 +52,26 @@ int main(int argc, char* argv[]){
         }
     }
 
+    string resultados = "complementos/resultados.txt";
+    ofstream borrar(resultados, ios::trunc);
+    if(!borrar.is_open()){
+        cerr << "no se pudo abrir el archivo de resultados" << endl;
+    }
+    borrar.close();
+
+    for(int i=0;i <cantidadCores; i++){
+        string c = to_string(i);
+        ofstream archivo("complementos/cores/core"+c+".txt");
+        if(archivo.is_open()){
+            archivo << "1";
+        }
+        else{
+            cerr << "El archivo de core status no se pudo crear" << endl;
+            return EXIT_FAILURE;
+        }
+
+    }
+
     int id = 0;
     vector<int> Cores;
     ifstream procesos(pathIn);
@@ -91,13 +111,7 @@ int main(int argc, char* argv[]){
             file.close();
 
         }
-        for(int i=0;i<cantidadCores;i++){
-            cout << Cores[i] << endl;
-        }
 
-
-
-        cout << "Cantidad de cores: " << cantidadCores << endl;
         int core = selectCore(Cores);
         while (core == -1){
             this_thread::sleep_for(chrono::milliseconds(50));

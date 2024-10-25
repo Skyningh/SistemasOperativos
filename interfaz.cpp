@@ -363,7 +363,7 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
             if(usuario.rol == "admin"){
                 envLoad();
                 char* cantidadCoresenv = getenv("CANTIDAD_CORES");
-                char* pathInenv = getenv("PROCESOS");   
+                char* pathInenv = getenv("PROCESOSM");
                 char* pathOutenv = getenv("RESULTADOS");
                 string cantidadCores(cantidadCoresenv);
                 string pathIn(pathInenv);

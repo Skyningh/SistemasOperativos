@@ -20,7 +20,7 @@ float multiplicacion(float n1,float n2){
 float division(float n1,float n2){
     if(n2 == 0.0){
         cerr << "No se puede dividir por 0" << endl;
-        return -1;
+        return NULL;
     } else{
         return n1/n2;
     }

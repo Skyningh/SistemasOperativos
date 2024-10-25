@@ -23,6 +23,26 @@ Después de compilar, se debe ejecutar como ./trabajo1 -u usuario -p contraseña
 | v | Un vector de números enteros |
 | n | Un número entero |
 
+## Variables de entorno
+Se utilizan variables de entorno a lo largo del proyecto para poder facilitar el uso en cada computador personal
+
+PATHBD=./complementos/users_bd.txt
+pathIn=./libros
+pathOut=./conteo_output
+stop_word=./complementos/stop_word.txt
+cantidad_thread=5
+mapa_archivos=./complementos/mapa.txt -- El archivo donde se guarda el mapa de los libros, con su id respectivo
+inverted_index=./complementos/indiceinv.txt -- El archivo donde se guarda el indice invertido
+PROCESOS=./complementos/procesosS.txt -- El archivos de proceso de tamaño pequeño
+PROCESOSM=./complementos/procesosM.txt -- El archivo de procesos de tamaño mediano
+PROCESOSL=./complementos/procesosL.txt -- El archivo de procesos grande
+CANTIDAD_CORES=3 -- Son la cantidad de cores que se simularan en la opcion 13
+RESULTADOS=./complementos/resultados.txt -- Es el archivo donde se guardaran los resultados de la opcion 13
+ESTADO_CORES=./complementos/cores -- Es la carpeta donde estan los archivos de el estado de cada core
+ARRAY_THREADS=1,2,4,8,16
+REPETICIONES=2
+
+
 ## Funciones
 
 ### Lógica general del programa (`funciones.cpp`)
@@ -131,4 +151,42 @@ Estas funciones crean el inverted index:
 
 - **`void creariIndex(string iIndex, string pathOut)`**
   Crea el indice invertido a partir de los archivos en pathOut
+
+### Planificador (`planificador.cpp`)
+
+  En el planificador se realiza la organizacion antes de ejecutar los cores con estas funciones:
+
+- **`vector<string> split2(string str, char separador)`**
+  Splitea un str a un vector, especifico para la situacion de planificador
+
+- **`int selectCore(vector<int> Cores)`**
+  Selecciona el core libre a ejecutar
+
+### Distribuidor (`distribuidor.cpp`)
+
+  En el distribuidor solo se interpreta el mensaje del planificador y se espera el resultado del core, solo se utiliza un main.
+
+### Core (`core.cpp`)
+
+  En el core se simula un core de un procesador, tiene estas funciones a ejecutar dependiendo de la operacion:
+
+- **`float suma(float n1, float n2)`**
+  Se suma el n1 y el n2
+
+- **`float resta(float n1, float n2)`**
+  Se resta el n1 por el n2
+
+- **`float multiplicacion(float n1, float n2)`**
+  Se multiplica el n1 con el n2
+
+- **`float division(float n1, float n2)`**
+  Verifica si el divisor es 0, si es asi devuelve 0, sino se divide normal
+
+
+
+
+
+
+
+
 
