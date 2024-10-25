@@ -125,5 +125,8 @@ int main(int argc, char* argv[]){
         }
     }
 
+    cout << "Ruta de resultados: " << pathOut << endl;
+    
+
     return 0;
 }
