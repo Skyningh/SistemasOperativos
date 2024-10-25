@@ -1,7 +1,6 @@
-# [Trabajo 1
+# Trabajo 1
 ## Descripcion
-Este programa es una interfaz que realiza diversas funciones desde los parámetros ingresados en consola, además de manejar autenticación de usuarios y realizar un conteo de palabras en archivos de texto. La autenticación se realiza utilizando una "base de datos" de usuarios almacenada en un archivo de texto.
-
+Este programa es una interfaz que realiza diversas funciones desde los parámetros ingresados en consola. Puede además, administrar los usuarios registrados en la base de datos, realizar múltiples conteos de palabras en archivos de texto grandes, con el uso de threads. Además de 
 
 ## Requisitos
 - Un ordenador con Linux, macOS o Windows

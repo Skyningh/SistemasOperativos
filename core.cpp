@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
 
-    ofstream file("complementos/cores/results/resultado"+coreid+"_"+id+".txt");
+    ofstream file("/complementos/cores/results/resultado"+coreid+"_"+id+".txt");
     if(!file.is_open()){
         cerr << "El archivo de resultado del core "+coreid+"_"+id+" no se pudo abrir." << endl;
         return EXIT_FAILURE;

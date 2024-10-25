@@ -10,6 +10,8 @@ También faltan validaciones, y incluir el txt en el env*/
 #include <getopt.h>
 #include <cstdlib>
 #include <unistd.h>
+#include <chrono>
+#include <fstream>
 
 #include "funciones.h"
 
@@ -52,18 +54,50 @@ int main (int argc, char* argv[]){
     int cantidad_threads = atoi(cantidad_threads1);
     char* pathIn = getenv("pathIn");
     char* pathOut = getenv("pathOut");
-    string extension = ".txt";
+    char* datos = getenv("DATOS");
+    
     vector<int> vec = procesarVector(array_threads);
+
+    ofstream datosFile(datos);
+    if (!datosFile.is_open()) {
+        cerr << "Error al abrir el archivo datos.txt" << endl;
+        return EXIT_FAILURE;
+    }
+
 
     cout<<"\033[32m"<<"Ejecutando con éxito para el vector de threads: "<< array_threads<< ", y con " <<repeticiones<<" repeticiones."<<"\033[0m"<<endl<<endl;
     for (int num : vec) {
         for (int i = 1; i<repeticiones+1 ;i++){
             cout<<"\033[32m"<< "Comienzo Ejecución\nNúmero de threads: "<<num<< " \nNúmero de repetición: "<<i<<"\033[0m"<<endl;
+            auto start = chrono::high_resolution_clock::now();  // Inicio del tiempo
+
             string comando = "./conteo -s " +  string(stopWordsFile) +  " -t " + to_string(num) +  " -i " + string(pathIn) + " -o " + string(pathOut);
             int status = system(comando.c_str());
+            auto end = chrono::high_resolution_clock::now();    // Fin del tiempo
+            chrono::duration<double> duration = end - start;
+
+            double tiempo_ejecucion = duration.count();
+            datosFile << num << " " << tiempo_ejecucion << endl;
+
+            cout << "Tiempo de ejecución para " << num << " threads, repetición " << i << ": " << tiempo_ejecucion << " segundos." << endl;
+
         }
     }
+    datosFile.close();
+
     cout << endl;
+
+    cout << "\033[32m" << "Ejecuciones finalizadas. Ejecutando el proceso ANALIZADOR..." << "\033[0m" << endl;
+
+    string analizador_cmd = "python3 analizador.py";
+    int status_analizador = system(analizador_cmd.c_str());
+
+
+    if (status_analizador == 0) {
+        cout << "\033[32m" << "Gráfico generado con éxito en " << getenv("GRAFICO") << "\033[0m" << endl;
+    } else {
+        cerr << "\033[31m" << "Error al ejecutar el proceso ANALIZADOR" << "\033[0m" << endl;
+    }
 
     return 0;
 }
