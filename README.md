@@ -13,7 +13,7 @@ Este programa es una interfaz que realiza diversas funciones desde los parámetr
 No se debe instalar nada. Para compilar, sólo se debe escribir "make" en el terminal en la carpeta donde están los archivos.
 
 ## Ejecucion
-Después de compilar, se debe ejecutar como ./trabajo1 -u usuario -p contraseña -t texto entre comillas -v vector de la forma 1,2,3,4 entre comillas -n un número entero.
+Después de compilar, se debe ejecutar como ./trabajo1 -u usuario -p contraseña -t texto entre comillas -v vector de la forma "1,2,3,4" (entre comillas) -n un número entero.
 
 | Argumento | Descripcion |
 | -------- | ----------- |

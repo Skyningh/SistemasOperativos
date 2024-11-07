@@ -138,6 +138,7 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
         cout << "11. Crear índice invertido" << endl;
         cout << "12. Analisis de performance" << endl;
         cout << "13. Planificador" << endl;
+        cout << "14. Buscador" << endl;
     }
     cout << "0. Salir" << endl;
 
@@ -406,6 +407,18 @@ int menu(Usuario usuario,string frase, vector <int> vec, float num, string PATHD
             }
             if (subMenu() == 0) return 6;
         }
+        case 14:{
+            system("clear");
+            if (usuario.rol == "admin"){
+                cout << "Opcion 14: Buscador." << endl;
+                string comando = "./buscador";
+                int status = system(comando.c_str());
+            }
+            menu(usuario, frase, vec, num, PATHDB);
+            break;
+
+        }
+
         default:
             cout<<endl<<"\033[31m"<< "Opción inválida. Intente de nuevo.!!!!"<<"\033[0m"<<endl;
         
