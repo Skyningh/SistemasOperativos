@@ -40,8 +40,8 @@ int main (){
     }
 
     cout << "Escriba la palabra a buscar, si quiere terminar el programa, escriba 'SALIR AHORA'" << endl;
-    cin >> mensaje;
-
+    getline(cin, mensaje);
+    
     cout<< "Enviando a cache..."<<endl;
 
     //Envía el mensaje a caché

@@ -143,7 +143,6 @@ void enviarAMotorBusqueda(const string& palabra) {
     char buffer[1024] = {0};
     read(sock, buffer, 1024);
     cout << "Respuesta del motor de búsqueda: " << buffer << endl;
-
     close(sock);
 }
 
