@@ -48,6 +48,8 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "unordered_set": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "map": "cpp",
+        "format": "cpp"
     }
 }
