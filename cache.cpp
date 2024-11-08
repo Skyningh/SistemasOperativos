@@ -8,6 +8,8 @@
 #include <tuple>
 #include <sstream>
 #include <cstring>
+#include <deque>
+#include "funciones.h"
 
 using namespace std;
 
@@ -15,9 +17,11 @@ using namespace std;
 #define MOTOR_PORT 2021  // Puerto para el motor de búsqueda
 
 // Declaración de funciones
-vector<tuple<int, int>> buscarPalabraCache(string palabra, map<string, vector<tuple<int, int>>>& cache);
-void enviarAMotorBusqueda(const string& palabra);
-string toString(vector<tuple<int, int>> vec);
+vector<tuple<int, int>> buscarPalabraCache(const string& palabra, map<string, vector<tuple<int, int>>>& cache);
+void enviarAMotorBusqueda(const string& palabra, map<string, vector<tuple<int, int>>>& cache, deque<string>& ordenAcceso, int ncache, int new_socket);
+string toString(const vector<tuple<int, int>>& vec);
+vector<tuple<int, int>> parsearResultados(const string& respuesta);
+void añadirCache(const string& palabra, const vector<tuple<int, int>>& resultados, map<string, vector<tuple<int, int>>>& cache, deque<string>& ordenAcceso, int ncache);
 
 int main() {
     int server_fd, new_socket;
@@ -65,12 +69,15 @@ int main() {
 
     cout << "Servidor corriendo y esperando conexiones en puerto: " << PORT << endl;
 
-    bool seguir = true;
-    map<string, vector<tuple<int, int>>> cache;
-    
-    // Inicializar el caché con algunos datos de ejemplo
-    cache["potito"].push_back({1, 2});
+    // Leer tamaño máximo del caché
+    char* memory_size = getenv("MEMORY_SIZE");
+    int ncache = memory_size ? atoi(memory_size) : 10;
 
+    // Inicializar el caché y el orden de acceso
+    map<string, vector<tuple<int, int>>> cache;
+    deque<string> ordenAcceso;
+
+    bool seguir = true;
     while (seguir) {
         // Aceptar nueva conexión
         if ((new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen)) < 0) {
@@ -87,18 +94,16 @@ int main() {
         if (mensaje == "SALIR AHORA") {
             cout << "Cerrando servidor" << endl;
             seguir = false;
-        }
-        else {
+        } else {
             vector<tuple<int, int>> busqueda = buscarPalabraCache(mensaje, cache);
             if (!busqueda.empty()) {
+                // Si está en caché, devolver la respuesta al cliente
                 string resultadoStr = toString(busqueda);
                 string respuesta = "Palabra encontrada en el caché: " + resultadoStr;
                 send(new_socket, respuesta.c_str(), respuesta.length(), 0);
             } else {
-                // Si no está en caché, enviar al motor de búsqueda
-                enviarAMotorBusqueda(mensaje);
-                string respuesta = "Palabra no encontrada en caché, enviada al motor de búsqueda";
-                send(new_socket, respuesta.c_str(), respuesta.length(), 0);
+                // Si no está en caché, enviar la palabra al motor de búsqueda
+                enviarAMotorBusqueda(mensaje, cache, ordenAcceso, ncache, new_socket);
             }
         }
         close(new_socket);
@@ -108,7 +113,8 @@ int main() {
     return 0;
 }
 
-void enviarAMotorBusqueda(const string& palabra) {
+// Función que envía la consulta al MOTOR DE BÚSQUEDA y añade al caché si hay resultados
+void enviarAMotorBusqueda(const string& palabra, map<string, vector<tuple<int, int>>>& cache, deque<string>& ordenAcceso, int ncache, int new_socket) {
     int sock = 0;
     struct sockaddr_in serv_addr;
 
@@ -122,7 +128,7 @@ void enviarAMotorBusqueda(const string& palabra) {
     serv_addr.sin_port = htons(MOTOR_PORT);
     memset(&serv_addr.sin_zero, 0, sizeof(serv_addr.sin_zero));
 
-    // Convertir IPv4 o IPv6 de texto a binario
+    // Convertir dirección IPv4
     if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
         cout << "Dirección inválida / no soportada" << endl;
         close(sock);
@@ -138,34 +144,87 @@ void enviarAMotorBusqueda(const string& palabra) {
 
     // Enviar la palabra
     send(sock, palabra.c_str(), palabra.length(), 0);
-    
-    // Esperar respuesta (opcional)
+
+    // Esperar respuesta del motor de búsqueda
     char buffer[1024] = {0};
     read(sock, buffer, 1024);
     cout << "Respuesta del motor de búsqueda: " << buffer << endl;
+    string respuesta(buffer);
+
+    // Procesar la respuesta recibida
+    if (respuesta != "NONE") {
+        vector<tuple<int, int>> resultados = parsearResultados(respuesta);
+        añadirCache(palabra, resultados, cache, ordenAcceso, ncache);
+
+        // Enviar la respuesta del motor al buscador
+        string resultadoStr = toString(resultados);
+        string respuestaFinal = resultadoStr;
+        send(new_socket, respuestaFinal.c_str(), respuestaFinal.length(), 0);
+    } else {
+        // Enviar "NONE" al buscador si no se encontraron resultados
+        string respuestaFinal = "NONE";
+        send(new_socket, respuestaFinal.c_str(), respuestaFinal.length(), 0);
+    }
+
     close(sock);
 }
 
-vector<tuple<int, int>> buscarPalabraCache(string palabra, map<string, vector<tuple<int, int>>>& cache) {
+// Función que convierte la respuesta en un vector de tuplas
+vector<tuple<int, int>> parsearResultados(const string& respuesta) {
+    vector<tuple<int, int>> resultados;
+    istringstream ss(respuesta);
+    string item;
+    while (getline(ss, item, ' ')) {
+        if (item.front() == '(' && item.back() == ')') {
+            item = item.substr(1, item.size() - 2); // Quitar paréntesis
+            int coma = item.find(',');
+            int docId = stoi(item.substr(0, coma));
+            int frecuencia = stoi(item.substr(coma + 1));
+            resultados.push_back(make_tuple(docId, frecuencia));
+        }
+    }
+    return resultados;
+}
+
+// Función que añade elementos al caché y respeta el límite de tamaño
+void añadirCache(const string& palabra, const vector<tuple<int, int>>& resultados, 
+                 map<string, vector<tuple<int, int>>>& cache, deque<string>& ordenAcceso, int ncache) {
+    // Verificar si el caché ha alcanzado su tamaño máximo
+    if (cache.size() >= ncache) {
+        // Eliminar la entrada más antigua
+        string claveAntigua = ordenAcceso.front();
+        ordenAcceso.pop_front();
+        cache.erase(claveAntigua);
+        cout << "Eliminada entrada más antigua del caché: " << claveAntigua << endl;
+    }
+
+    // Añadir la nueva entrada al caché y registrar su orden de acceso
+    cache[palabra] = resultados;
+    ordenAcceso.push_back(palabra);
+
+    cout << "Añadida palabra al caché: " << palabra << endl;
+}
+
+// Función que verifica si la palabra está en el caché
+vector<tuple<int, int>> buscarPalabraCache(const string& palabra, map<string, vector<tuple<int, int>>>& cache) {
     auto it = cache.find(palabra);
     if (it != cache.end()) {
-        cout << "Palabra encontrada en el cache" << endl;
+        cout << "Palabra encontrada en el CACHÉ" << endl;
         return it->second;
     } else {
-        cout << "Palabra no encontrada, llamando a MOTOR DE BÚSQUEDA" << endl;
+        cout << "Palabra no encontrada en CACHÉ, llamando a MOTOR DE BÚSQUEDA" << endl;
         return {};
     }
 }
 
-string toString(vector<tuple<int, int>> vec) {
+// Función para convertir un vector de tuplas a string
+string toString(const vector<tuple<int, int>>& vec) {
     stringstream ss;
-    ss << "[";
     for(size_t i = 0; i < vec.size(); i++) {
         ss << "(" << get<0>(vec[i]) << "," << get<1>(vec[i]) << ")";
         if(i < vec.size() - 1) {
-            ss << ", ";
+            ss << " "; // Separar cada tupla con un espacio
         }
     }
-    ss << "]";
     return ss.str();
 }

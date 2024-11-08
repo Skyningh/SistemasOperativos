@@ -3,130 +3,89 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <tuple>
 #include <fstream>
 #include <map>
-#include <sstream>
-#include <algorithm>
 #include <vector>
-#include "funciones.cpp"
+#include <tuple>
+#include <algorithm>
+#include <sstream>
 #include "funciones.h"
 
 using namespace std;
 
 #define PORT 2021
 
-map<string, vector<tuple<int, int>>> cargarii(string ii) {
-    map<string, vector<tuple<int, int>>> index;
-    ifstream archivo(ii);
+// Cargar el índice invertido desde un archivo
+map<string, vector<tuple<int, int>>> cargarIndice(const string& rutaArchivo) {
+    map<string, vector<tuple<int, int>>> indice;
+    ifstream archivo(rutaArchivo);
     string linea;
 
     while (getline(archivo, linea)) {
         istringstream ss(linea);
         string palabra;
-        // Lee cada palabra
-        getline(ss, palabra, ';'); 
-
-        vector<tuple<int, int>> docs;
+        getline(ss, palabra, ';');  // Obtener la palabra clave
+        vector<tuple<int, int>> documentos;
         string entrada;
+
         while (getline(ss, entrada, ';')) {
-            // Quitar parentesis
-            entrada = entrada.substr(1, entrada.size() - 2);
-            int comma_pos = entrada.find(',');
-
-            int id = stoi(entrada.substr(0, comma_pos));
-            int freq = stoi(entrada.substr(comma_pos + 1));
-
-            docs.push_back(make_tuple(id, freq));
+            entrada = entrada.substr(1, entrada.size() - 2);  // Eliminar paréntesis
+            int coma = entrada.find(',');
+            int docId = stoi(entrada.substr(0, coma));
+            int frecuencia = stoi(entrada.substr(coma + 1));
+            documentos.push_back(make_tuple(docId, frecuencia));
         }
-
-        index[palabra] = docs;
+        indice[palabra] = documentos;
     }
-    return index;
+    return indice;
 }
 
-map<int, int> get_combined_scores(vector<string> words, map<string, vector<tuple<int, int>>> index) {
+// Calcular puntajes combinados para los términos de búsqueda
+map<int, int> calcularPuntajes(const vector<string>& palabras, const map<string, vector<tuple<int, int>>>& indice) {
     map<int, int> puntajes;
-
-    for (auto word : words) {
-        auto iterador = index.find(word);
-        if (iterador != index.end()) {
-            for (auto doc : iterador->second) {
-                int id = get<0>(doc);
-                int freq = get<1>(doc);
-                puntajes[id] += freq;
+    for (const auto& palabra : palabras) {
+        auto it = indice.find(palabra);
+        if (it != indice.end()) {
+            for (const auto& [docId, frecuencia] : it->second) {
+                puntajes[docId] += frecuencia;  // Sumar frecuencia al puntaje del documento
             }
         }
     }
-
     return puntajes;
 }
 
-// Esta función envía los resultados de búsqueda al servidor de caché
-void enviarAlCache(const vector<tuple<int, int>>& resultados) {
-    int sock = 0;
-    struct sockaddr_in serv_addr;
-    
-    // Crear socket
-    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        cout << "Error creando socket para enviar al servidor de caché" << endl;
-        return;
+// Procesar la consulta, ordenar y limitar los resultados
+vector<tuple<int, int>> procesarConsulta(const string& consulta, const map<string, vector<tuple<int, int>>>& indice) {
+    istringstream ss(consulta);
+    vector<string> palabras;
+    string palabra;
+    while (ss >> palabra) {
+        palabras.push_back(palabra);
     }
 
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(PORT); // Puerto del servidor de caché
 
-    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
-        cout << "Dirección inválida / no soportada" << endl;
-        close(sock);
-        return;
+    map<int, int> puntajes = calcularPuntajes(palabras, indice);
+    vector<tuple<int, int>> resultados;
+    for (const auto& [docId, puntaje] : puntajes) {
+        resultados.push_back(make_tuple(docId, puntaje));
     }
 
-    // Conectar al servidor de caché
-    if (connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) {
-        cout << "Conexión al servidor de caché fallida" << endl;
-        close(sock);
-        return;
-    }
-
-    // Convertir los resultados a una cadena para enviarlos
-    stringstream ss;
-    for (const auto& resultado : resultados) {
-        ss << "(" << get<0>(resultado) << "," << get<1>(resultado) << ") ";
-    }
-    string respuesta = ss.str();
-
-    // Enviar los resultados al servidor de caché
-    send(sock, respuesta.c_str(), respuesta.size(), 0);
-    close(sock);
-}
-
-vector<tuple<int, int>> search_and_rank(string query, map<string, vector<tuple<int, int>>> index) {
-    istringstream ss(query);
-    string word;
-    vector<string> words;
-
-    while (ss >> word) {
-        words.push_back(word);
-    }
-
-    auto scores = get_combined_scores(words, index);
-
-    vector<tuple<int, int>> results;
-    for (auto entry : scores) {
-        results.push_back(make_tuple(entry.first, entry.second));
-    }
-
-    sort(results.begin(), results.end(), [](auto a, auto b) {
+    // Ordenar por puntaje (descendente) y limitar a TOPK
+    sort(resultados.begin(), resultados.end(), [](const auto& a, const auto& b) {
         return get<1>(a) > get<1>(b) || (get<1>(a) == get<1>(b) && get<0>(a) < get<0>(b));
     });
 
-    // Enviar los resultados al servidor de caché
-    enviarAlCache(results);
+    char* top = getenv("TOPK");
+    int TOPK = atoi(top);
 
-    return results;
+    if (resultados.size() > TOPK) {
+        resultados.resize(TOPK);  // Limitar a TOPK
+    }
+
+    return resultados;
 }
 
+// Iniciar el servidor y procesar consultas
 int main() {
     int server_fd, new_socket;
     struct sockaddr_in address;
@@ -140,12 +99,6 @@ int main() {
 
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
         perror("Hubo un error en setsockopt para SO_REUSEADDR");
-        close(server_fd);
-        exit(EXIT_FAILURE);
-    }
-
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEPORT, &opt, sizeof(opt)) != 0) {
-        perror("Hubo un error en setsockopt para SO_REUSEPORT");
         close(server_fd);
         exit(EXIT_FAILURE);
     }
@@ -166,43 +119,55 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    cout << "Servidor corriendo y esperando conexiones en el puerto: " << PORT << endl;
+    cout << "Servidor de MOTOR DE BÚSQUEDA corriendo en el puerto: " << PORT << endl;
+    
+    // Cargar el índice invertido al iniciar
+    char* envPath = getenv("inverted_index");
+    if (!envPath) {
+        cerr << "Error: La variable de entorno 'inverted_index' no está definida." << endl;
+        return EXIT_FAILURE;
+    }
+    string rutaIndice(envPath);
+    map<string, vector<tuple<int, int>>> indice = cargarIndice(rutaIndice);
 
-    bool seguir = true;
-
-    while (seguir){
-            if ((new_socket = accept(server_fd, (struct sockaddr*)&address, &addrlen)) < 0) {
+    while (true) {
+        if ((new_socket = accept(server_fd, (struct sockaddr*)&address, &addrlen)) < 0) {
             perror("Hubo un error en el accept");
             continue;
         }
 
+        // Leer consulta del CACHE
         char buffer[1024] = {0};
-        int valorleido = read(new_socket, buffer, 1024);
-        string mensaje(buffer);
+        int valread = read(new_socket, buffer, 1024);
+        string consulta(buffer);
 
-        cout << "Mensaje: " << mensaje << endl;
-
-        if (mensaje == "SALIR AHORA"){
-            cout << "Cerrando servidor" << endl;
-            seguir = false;
+        if (consulta == "SALIR AHORA") {
+            cout << "Cerrando servidor de MOTOR DE BÚSQUEDA" << endl;
+            break;
         }
-        else{
-            char* iienv = getenv("inverted_index");
-            string ii(iienv);
-            int TOPK = 20;
 
-            string respuesta = "Mensaje recibido: " + mensaje;
-            send(new_socket, respuesta.c_str(), respuesta.size(), 0);
-            auto index = cargarii(ii);
+        cout << "Consulta recibida: " << consulta << endl;
 
-            auto resultados = search_and_rank(mensaje, index);
+        // Procesar la consulta y obtener resultados
 
+        vector<tuple<int, int>> resultados = procesarConsulta(consulta, indice);
 
+        string respuesta;
+        if (resultados.empty()) {
+            respuesta = "NONE";  // Enviar "NONE" si no hay resultados
+        } else {
+            // Convertir los resultados a una cadena para enviar al CACHE
+            stringstream ss;
+            for (const auto& [docId, puntaje] : resultados) {
+                ss << "(" << docId << "," << puntaje << ") ";
+            }
+            respuesta = ss.str();
         }
+        // Enviar resultados al CACHE
+        send(new_socket, respuesta.c_str(), respuesta.size(), 0);
         close(new_socket);
     }
 
     close(server_fd);
-
     return 0;
 }

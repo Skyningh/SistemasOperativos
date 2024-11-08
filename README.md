@@ -43,6 +43,8 @@ ARRAY_THREADS=1,2,4,8,16 -- El arreglo de los threads a utilizar para el conteo 
 REPETICIONES=2 -- Cantidad de repeticiones de cada iteración de conteo en cada valor del arreglo thread
 DATOS=./complementos/datos.txt -- Archivo de salida para los tiempos de ejecución de conteo thread
 GRAFICO=./complementos/grafico.png -- Imagen png del gráfico tiempo vs cantidad de threads
+MEMORY_SIZE=3 -- Limita el tamaño del cache
+TOPK=3 -- Limita la cantidad de respuestas del programa
 
 ## Funciones
 
@@ -204,6 +206,58 @@ Este script en Python lee los datos de tiempos de ejecución y crea un gráfico 
   Genera un gráfico de líneas que representa el tiempo de ejecución en función del número de threads. Cada repetición se representa en una línea distinta, y el gráfico resultante se guarda en la ruta especificada en la variable de entorno `GRAFICO`. 
 
 Estos archivos permiten un análisis detallado de la eficiencia del programa en función de los threads, identificando configuraciones óptimas para maximizar el rendimiento.
+
+
+### Sistema de Búsqueda Distribuido
+
+### Cliente de Búsqueda (buscador.cpp)
+Este script en C++ implementa el cliente que interactúa con el sistema de búsqueda, permitiendo a los usuarios realizar consultas. Las funciones principales incluyen:
+
+- **`cargarMapaArchivos(const string& rutaArchivo)`**  
+Lee un archivo que contiene el mapeo entre nombres de archivos y sus IDs, retornando un mapa que relaciona cada nombre con su identificador numérico.
+
+- **`main()`**  
+Función principal que establece la conexión con el servidor caché, procesa las entradas del usuario y muestra los resultados de búsqueda formateados. Gestiona la comunicación mediante sockets TCP/IP.
+
+### Servidor de Caché (cache.cpp)
+Este componente actúa como intermediario entre el cliente y el motor de búsqueda, implementando un sistema de caché para optimizar las consultas repetidas. Las funciones principales incluyen:
+
+- **`buscarPalabraCache(const string& palabra, map<string, vector<tuple<int, int>>>& cache)`**  
+Verifica si una palabra existe en el caché y retorna sus resultados asociados si está presente.
+
+- **`enviarAMotorBusqueda(const string& palabra, map<string, vector<tuple<int, int>>>& cache, deque<string>& ordenAcceso, int ncache, int new_socket)`**  
+Gestiona la comunicación con el motor de búsqueda cuando una palabra no se encuentra en caché.
+parsearResultados(const string& respuesta)
+Convierte la respuesta del motor de búsqueda en un formato procesable de vectores y tuplas.
+
+- **`añadirCache(const string& palabra, const vector<tuple<int, int>>& resultados, map<string, vector<tuple<int, int>>>& cache, deque<string>& ordenAcceso, int ncache)`**  
+Gestiona la adición de nuevos elementos al caché, manteniendo un límite de tamaño y política de reemplazo.
+
+- **`toString(const vector<tuple<int, int>>& vec)`**  
+Convierte los resultados a formato string para su transmisión.
+
+- **`main()`**  
+Inicializa y gestiona el servidor caché, manejando las conexiones entrantes y la política de caché.
+
+### Motor de Búsqueda (motordebusqueda.cpp)
+Este es el componente principal que procesa las consultas y gestiona el índice invertido. Las funciones principales incluyen:
+
+- **`cargarIndice(const string& rutaArchivo)`**  
+Carga el índice invertido desde un archivo, creando una estructura de datos eficiente para las búsquedas.
+
+- **`calcularPuntajes(const vector<string>& palabras, const map<string, vector<tuple<int, int>>>& indice)
+Calcula los puntajes combinados para los términos de búsqueda, considerando la frecuencia de aparición.
+
+- **`procesarConsulta(const string& consulta, const map<string, vector<tuple<int, int>>>& indice)`**  
+Procesa la consulta del usuario, ordena los resultados por relevancia y limita la cantidad según el parámetro TOPK.
+
+- **`main()`**  
+Inicializa el servidor del motor de búsqueda, carga el índice invertido y procesa las peticiones entrantes del servidor caché.
+
+Este sistema distribuido permite realizar búsquedas eficientes en un conjunto de documentos, utilizando un sistema de caché para optimizar consultas frecuentes y un motor de búsqueda robusto para procesar nuevas consultas.
+
+
+
 
 
 
